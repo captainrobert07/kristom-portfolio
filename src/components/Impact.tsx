@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Reveal from './Reveal';
+import { BigNumeral, ChartGlyph, GlyphBar, HairlineGrid, Timecode, EdgeTag } from './SectionDecor';
 
 type Stat = {
   prefix?: string;
@@ -86,9 +87,14 @@ export default function Impact() {
   return (
     <section
       id="impact"
-      className="relative text-white py-24 sm:py-32 px-6 sm:px-12"
+      className="relative text-white py-24 sm:py-32 px-6 sm:px-12 overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto" ref={ref}>
+      <HairlineGrid opacity={0.04} />
+      <BigNumeral num="03" position="right" />
+      <ChartGlyph className="absolute bottom-12 left-6 w-[36vw] h-[18vw] max-w-[480px] max-h-[240px] opacity-90 pointer-events-none" />
+      <EdgeTag side="left">IMPACT · 03</EdgeTag>
+      <Timecode value="CH 03 · 06:45" className="absolute top-8 right-8 z-10" />
+      <div className="max-w-6xl mx-auto relative" ref={ref}>
         <Reveal>
           <div className="flex items-center gap-3 mb-6 text-white/50 text-xs tracking-[0.3em] uppercase">
             <span className="w-8 h-px bg-white/30" />
@@ -102,6 +108,12 @@ export default function Impact() {
           </h2>
         </Reveal>
 
+        <Reveal delay={120}>
+          <div className="flex items-center justify-between mb-6 text-white/40 font-mono text-[10px] tracking-[0.32em] uppercase">
+            <span>Live Metrics · 2023 → 2026</span>
+            <GlyphBar count={20} />
+          </div>
+        </Reveal>
         <Reveal delay={150} variant="scale">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm">
             {stats.map((s) => (

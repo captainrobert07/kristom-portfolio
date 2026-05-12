@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Plus, Minus } from 'lucide-react';
 import Reveal from './Reveal';
+import { BigNumeral, EdgeTag, FlowGlyph, Timecode, DotRow } from './SectionDecor';
 
 type Role = {
   when: string;
@@ -131,9 +132,13 @@ export default function Experience() {
   return (
     <section
       id="work"
-      className="relative text-white py-24 sm:py-32 px-6 sm:px-12"
+      className="relative text-white py-24 sm:py-32 px-6 sm:px-12 overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto">
+      <BigNumeral num="04" position="left" />
+      <FlowGlyph className="absolute top-16 right-6 w-[32vw] h-[20vw] max-w-[400px] max-h-[240px] opacity-80 pointer-events-none" />
+      <EdgeTag side="right">EXPERIENCE · 04</EdgeTag>
+      <Timecode value="CH 04 · 08:12" className="absolute top-8 right-8 z-10" />
+      <div className="max-w-6xl mx-auto relative">
         <Reveal>
           <div className="flex items-center gap-3 mb-6 text-white/50 text-xs tracking-[0.3em] uppercase">
             <span className="w-8 h-px bg-white/30" />
@@ -141,10 +146,13 @@ export default function Experience() {
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-tight mb-16 max-w-3xl">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-tight mb-6 max-w-3xl">
             Six years, four industries,
             <span className="text-white/40"> one through-line.</span>
           </h2>
+        </Reveal>
+        <Reveal delay={120}>
+          <DotRow className="mb-16" />
         </Reveal>
 
         <div className="relative" ref={containerRef}>

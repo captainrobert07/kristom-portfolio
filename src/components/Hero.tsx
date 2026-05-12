@@ -25,7 +25,7 @@ export default function Hero() {
   const { theme, toggle } = useTheme();
 
   return (
-    <section id="home" className="relative w-full h-screen overflow-hidden">
+    <section id="home" data-force-dark className="relative w-full h-screen overflow-hidden">
       {/* background video */}
       <video
         className="absolute inset-0 w-full h-full object-cover"

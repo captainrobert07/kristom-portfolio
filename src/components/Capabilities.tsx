@@ -1,5 +1,6 @@
 import { LineChart, Workflow, ShieldCheck, MessagesSquare } from 'lucide-react';
 import Reveal from './Reveal';
+import { BigNumeral, EdgeTag, OrbitGlyph, HairlineGrid, Timecode } from './SectionDecor';
 
 const pillars = [
   {
@@ -36,9 +37,14 @@ export default function Capabilities() {
   return (
     <section
       id="capabilities"
-      className="relative text-white py-24 sm:py-32 px-6 sm:px-12"
+      className="relative text-white py-24 sm:py-32 px-6 sm:px-12 overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto">
+      <HairlineGrid opacity={0.04} />
+      <BigNumeral num="02" position="left" />
+      <OrbitGlyph className="absolute top-1/2 right-[-8vw] -translate-y-1/2 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] opacity-80 pointer-events-none" />
+      <EdgeTag side="right">CAPABILITIES · 02</EdgeTag>
+      <Timecode value="CH 02 · 04:30" className="absolute top-8 right-8 z-10" />
+      <div className="max-w-6xl mx-auto relative">
         <Reveal>
           <div className="flex items-center gap-3 mb-6 text-white/50 text-xs tracking-[0.3em] uppercase">
             <span className="w-8 h-px bg-white/30" />

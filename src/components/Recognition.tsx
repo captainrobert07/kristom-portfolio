@@ -1,5 +1,6 @@
 import { Award, GraduationCap } from 'lucide-react';
 import Reveal from './Reveal';
+import { BigNumeral, EdgeTag, QuoteGlyph, Timecode } from './SectionDecor';
 
 const awards = [
   { num: '01', title: '9× Allianz Best Performer Award', year: '2022 — 2025' },
@@ -23,9 +24,12 @@ export default function Recognition() {
   return (
     <section
       id="recognition"
-      className="relative text-white py-24 sm:py-32 px-6 sm:px-12"
+      className="relative text-white py-24 sm:py-32 px-6 sm:px-12 overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto">
+      <BigNumeral num="06" position="left" />
+      <EdgeTag side="right">RECOGNITION · 06</EdgeTag>
+      <Timecode value="CH 06 · 13:02" className="absolute top-8 right-8 z-10" />
+      <div className="max-w-6xl mx-auto relative">
         <Reveal>
           <div className="flex items-center gap-3 mb-6 text-white/50 text-xs tracking-[0.3em] uppercase">
             <span className="w-8 h-px bg-white/30" />
@@ -62,7 +66,8 @@ export default function Recognition() {
             </div>
           </div>
 
-          <div className="md:col-span-5 md:pl-8 md:border-l md:border-white/10 space-y-10">
+          <div className="md:col-span-5 md:pl-8 md:border-l md:border-white/10 space-y-10 relative">
+            <QuoteGlyph className="absolute -top-10 right-2 w-24 h-24 opacity-50" />
             <Reveal delay={120} variant="right">
               <div>
                 <div className="flex items-center gap-2 text-white/50 text-xs tracking-[0.22em] uppercase mb-6">

@@ -1,5 +1,6 @@
 import { Mail, Phone, Linkedin, ArrowUpRight, Download } from 'lucide-react';
 import Reveal from './Reveal';
+import { BigNumeral, CornerBrackets, HairlineGrid, Timecode } from './SectionDecor';
 
 const channels = [
   {
@@ -26,9 +27,13 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative text-white py-24 sm:py-40 px-6 sm:px-12"
+      className="relative text-white py-24 sm:py-40 px-6 sm:px-12 overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto text-center">
+      <HairlineGrid opacity={0.04} />
+      <CornerBrackets inset={32} />
+      <BigNumeral num="08" position="left" className="opacity-30" />
+      <Timecode value="CH 08 · END FRAME" className="absolute top-8 right-8 z-10" />
+      <div className="max-w-6xl mx-auto text-center relative">
         <Reveal>
           <div className="flex items-center justify-center gap-3 mb-8 text-white/50 text-xs tracking-[0.3em] uppercase">
             <span className="w-8 h-px bg-white/30" />

@@ -1,12 +1,16 @@
 import Reveal from './Reveal';
+import { BigNumeral, EdgeTag, QuoteGlyph, Timecode } from './SectionDecor';
 
 export default function About() {
   return (
     <section
       id="about"
-      className="relative text-white py-24 sm:py-32 px-6 sm:px-12"
+      className="relative text-white py-24 sm:py-32 px-6 sm:px-12 overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto">
+      <BigNumeral num="01" position="right" />
+      <EdgeTag side="left">PROFILE · 01</EdgeTag>
+      <Timecode value="CH 01 · 02:14" className="absolute top-8 right-8 z-10" />
+      <div className="max-w-6xl mx-auto relative">
         <Reveal>
           <div className="flex items-center gap-3 mb-10 text-white/50 text-xs tracking-[0.3em] uppercase">
             <span className="w-8 h-px bg-white/30" />
@@ -49,8 +53,9 @@ export default function About() {
             </Reveal>
           </div>
 
-          <div className="md:col-span-5 md:pl-8 md:border-l md:border-white/10">
-            <div className="space-y-8">
+          <div className="md:col-span-5 md:pl-8 md:border-l md:border-white/10 relative">
+            <QuoteGlyph className="absolute -top-6 -left-2 w-20 h-20 opacity-60" />
+            <div className="space-y-8 relative">
               <Reveal delay={80}>
                 <div>
                   <div className="text-white/40 text-xs tracking-[0.22em] uppercase mb-3">

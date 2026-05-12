@@ -1,5 +1,6 @@
 import { ArrowUpRight, BookOpen } from 'lucide-react';
 import Reveal from './Reveal';
+import { BigNumeral, EdgeTag, FlowGlyph, Timecode } from './SectionDecor';
 
 const posts = [
   {
@@ -17,9 +18,13 @@ export default function Writing() {
   return (
     <section
       id="writing"
-      className="relative text-white py-24 sm:py-32 px-6 sm:px-12"
+      className="relative text-white py-24 sm:py-32 px-6 sm:px-12 overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto">
+      <BigNumeral num="07" position="right" />
+      <FlowGlyph className="absolute bottom-12 left-6 w-[28vw] h-[16vw] max-w-[360px] max-h-[200px] opacity-70 pointer-events-none" />
+      <EdgeTag side="left">WRITING · 07</EdgeTag>
+      <Timecode value="CH 07 · 15:24" className="absolute top-8 right-8 z-10" />
+      <div className="max-w-6xl mx-auto relative">
         <Reveal>
           <div className="flex items-center gap-3 mb-6 text-white/50 text-xs tracking-[0.3em] uppercase">
             <span className="w-8 h-px bg-white/30" />
