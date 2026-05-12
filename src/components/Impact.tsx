@@ -44,7 +44,7 @@ function StatCard({ stat, p }: { stat: Stat; p: number }) {
   const eased = 1 - Math.pow(1 - Math.min(1, Math.max(0, p)), 3);
   const v = Math.floor(eased * stat.value);
   return (
-    <div className="relative bg-black p-8 sm:p-10 group transition-colors hover:bg-white/[0.03]">
+    <div className="relative bg-black/55 p-8 sm:p-10 group transition-colors hover:bg-black/35">
       <div className="text-white/40 text-xs tracking-[0.22em] uppercase mb-6">
         {stat.label}
       </div>
@@ -86,7 +86,7 @@ export default function Impact() {
   return (
     <section
       id="impact"
-      className="relative bg-black text-white py-24 sm:py-32 px-6 sm:px-12"
+      className="relative text-white py-24 sm:py-32 px-6 sm:px-12"
     >
       <div className="max-w-6xl mx-auto" ref={ref}>
         <Reveal>
@@ -103,7 +103,7 @@ export default function Impact() {
         </Reveal>
 
         <Reveal delay={150}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/5 rounded-2xl overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm">
             {stats.map((s) => (
               <StatCard key={s.label} stat={s} p={progress} />
             ))}

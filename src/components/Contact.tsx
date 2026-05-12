@@ -26,7 +26,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative bg-black text-white py-24 sm:py-40 px-6 sm:px-12"
+      className="relative text-white py-24 sm:py-40 px-6 sm:px-12"
     >
       <div className="max-w-6xl mx-auto text-center">
         <Reveal>
@@ -54,7 +54,7 @@ export default function Contact() {
         </Reveal>
 
         <Reveal delay={240}>
-          <div className="grid sm:grid-cols-3 gap-px bg-white/5 border border-white/5 rounded-2xl overflow-hidden text-left mb-12">
+          <div className="grid sm:grid-cols-3 gap-px bg-white/5 border border-white/10 rounded-2xl overflow-hidden text-left mb-12 backdrop-blur-sm">
             {channels.map((c) => {
               const Icon = c.icon;
               return (
@@ -63,7 +63,7 @@ export default function Contact() {
                   href={c.href}
                   target={c.href.startsWith('http') ? '_blank' : undefined}
                   rel="noreferrer"
-                  className="group bg-black p-7 flex items-center justify-between hover:bg-white/[0.04] transition-colors"
+                  className="group bg-black/55 p-7 flex items-center justify-between hover:bg-black/35 transition-colors"
                 >
                   <div className="flex items-center gap-4">
                     <div className="liquid-glass rounded-xl p-3">

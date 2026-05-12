@@ -2,7 +2,7 @@ import { Infinity } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white border-t border-white/10 px-6 sm:px-12 py-10">
+    <footer className="relative bg-black/40 backdrop-blur-sm text-white border-t border-white/10 px-6 sm:px-12 py-10">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
         <div className="flex items-center gap-2 text-white/80">
           <Infinity size={18} strokeWidth={1.5} />

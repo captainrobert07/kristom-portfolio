@@ -7,7 +7,7 @@ type Props = {
 export default function Marquee({ items, speed = 40, reverse = false }: Props) {
   const seq = [...items, ...items, ...items];
   return (
-    <div className="relative bg-black border-y border-white/10 overflow-hidden py-5">
+    <div className="relative bg-black/40 backdrop-blur-sm border-y border-white/10 overflow-hidden py-5">
       <div
         className="flex gap-12 whitespace-nowrap"
         style={{

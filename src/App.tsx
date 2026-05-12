@@ -9,6 +9,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ProgressRail from './components/ProgressRail';
 import Marquee from './components/Marquee';
+import BackgroundField from './components/BackgroundField';
 
 const TOOLS_BAND = [
   'Power BI', 'Tableau', 'SQL', 'SAS', 'Power Automate', 'Salesforce',
@@ -22,7 +23,8 @@ const PROOF_BAND = [
 
 export default function App() {
   return (
-    <main className="bg-black text-white">
+    <main className="relative text-white">
+      <BackgroundField />
       <ProgressRail />
       <Hero />
       <About />

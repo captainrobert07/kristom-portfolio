@@ -36,7 +36,7 @@ export default function Capabilities() {
   return (
     <section
       id="capabilities"
-      className="relative bg-black text-white py-24 sm:py-32 px-6 sm:px-12"
+      className="relative text-white py-24 sm:py-32 px-6 sm:px-12"
     >
       <div className="max-w-6xl mx-auto">
         <Reveal>
@@ -52,12 +52,12 @@ export default function Capabilities() {
           </h2>
         </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-px bg-white/5 border border-white/5 rounded-2xl overflow-hidden">
+        <div className="grid md:grid-cols-2 gap-px bg-white/5 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm">
           {pillars.map((p, i) => {
             const Icon = p.icon;
             return (
               <Reveal key={p.title} delay={i * 90}>
-                <div className="group relative bg-black p-8 sm:p-10 transition-colors hover:bg-white/[0.03] h-full">
+                <div className="group relative bg-black/55 p-8 sm:p-10 transition-colors hover:bg-black/35 h-full">
                   <div className="flex items-start justify-between mb-8">
                     <div className="liquid-glass rounded-xl p-3">
                       <Icon size={20} strokeWidth={1.5} className="text-white" />

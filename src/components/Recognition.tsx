@@ -23,7 +23,7 @@ export default function Recognition() {
   return (
     <section
       id="recognition"
-      className="relative bg-black text-white py-24 sm:py-32 px-6 sm:px-12"
+      className="relative text-white py-24 sm:py-32 px-6 sm:px-12"
     >
       <div className="max-w-6xl mx-auto">
         <Reveal>

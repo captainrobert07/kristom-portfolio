@@ -15,7 +15,7 @@ html {
 html, body, #root {
   margin: 0;
   padding: 0;
-  background: #000;
+  background: #0a0908;
 }
 
 body {
@@ -40,6 +40,11 @@ body {
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-33.3333%); }
+}
+
+@keyframes sheenDrift {
+  0%, 100% { transform: translateY(0); opacity: 0.28; }
+  50%      { transform: translateY(-3vh); opacity: 0.42; }
 }
 
 .liquid-glass::before {

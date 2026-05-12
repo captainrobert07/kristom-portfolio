@@ -110,7 +110,7 @@ export default function Experience() {
   return (
     <section
       id="work"
-      className="relative bg-black text-white py-24 sm:py-32 px-6 sm:px-12"
+      className="relative text-white py-24 sm:py-32 px-6 sm:px-12"
     >
       <div className="max-w-6xl mx-auto">
         <Reveal>
@@ -146,7 +146,7 @@ export default function Experience() {
               >
                 {/* dot */}
                 <div
-                  className={`absolute left-[-4px] sm:left-[177px] top-2 w-2.5 h-2.5 rounded-full ring-4 ring-black transition-all duration-300 ${
+                  className={`absolute left-[-4px] sm:left-[177px] top-2 w-2.5 h-2.5 rounded-full ring-4 ring-[#0a0908] transition-all duration-300 ${
                     activeIdx === i ? 'bg-white scale-150' : 'bg-white/40'
                   }`}
                 />
