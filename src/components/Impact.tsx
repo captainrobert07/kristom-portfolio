@@ -102,7 +102,7 @@ export default function Impact() {
           </h2>
         </Reveal>
 
-        <Reveal delay={150}>
+        <Reveal delay={150} variant="scale">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm">
             {stats.map((s) => (
               <StatCard key={s.label} stat={s} p={progress} />

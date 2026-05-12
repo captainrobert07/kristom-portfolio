@@ -5,11 +5,13 @@ import Impact from './components/Impact';
 import Experience from './components/Experience';
 import Stack from './components/Stack';
 import Recognition from './components/Recognition';
+import Writing from './components/Writing';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ProgressRail from './components/ProgressRail';
 import Marquee from './components/Marquee';
 import BackgroundField from './components/BackgroundField';
+import Cursor from './components/Cursor';
 
 const TOOLS_BAND = [
   'Power BI', 'Tableau', 'SQL', 'SAS', 'Power Automate', 'Salesforce',
@@ -26,6 +28,7 @@ export default function App() {
     <main className="relative text-white">
       <BackgroundField />
       <ProgressRail />
+      <Cursor />
       <Hero />
       <About />
       <Marquee items={TOOLS_BAND} speed={50} />
@@ -35,6 +38,7 @@ export default function App() {
       <Experience />
       <Stack />
       <Recognition />
+      <Writing />
       <Contact />
       <Footer />
     </main>

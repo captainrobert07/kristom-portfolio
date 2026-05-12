@@ -16,7 +16,7 @@ export default function About() {
 
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-7">
-            <Reveal>
+            <Reveal variant="mask">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-tight mb-8">
                 I'm a translator between
                 <span className="text-white/40"> systems </span>

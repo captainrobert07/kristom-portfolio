@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { ChevronDown, Infinity, Menu, X } from 'lucide-react';
+import { ChevronDown, Infinity, Menu, X, Sun, Moon, Download } from 'lucide-react';
+import { useTheme } from '../hooks/useTheme';
 
 const BG_VIDEO =
   'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260511_230229_7c9bc431-46cf-489a-948d-e8144d8eb5d4.mp4';
@@ -15,11 +16,13 @@ const navLinks: NavLink[] = [
   { label: 'Home', href: '#home', active: true },
   { label: 'Work', href: '#work', dropdown: true },
   { label: 'Capabilities', href: '#capabilities' },
+  { label: 'Writing', href: '#writing' },
   { label: 'Contact', href: '#contact' },
 ];
 
 export default function Hero() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { theme, toggle } = useTheme();
 
   return (
     <section id="home" className="relative w-full h-screen overflow-hidden">
@@ -58,10 +61,19 @@ export default function Hero() {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <a
-            href="mailto:kristomrobert@gmail.com"
-            className="liquid-glass text-white text-sm font-medium px-4 py-2.5 rounded-full hover:bg-white/5 transition-colors"
+          <button
+            onClick={toggle}
+            aria-label="Toggle theme"
+            className="liquid-glass text-white p-2.5 rounded-full hover:bg-white/5 transition-colors"
           >
+            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+          <a
+            href="/resume.pdf"
+            download="Kristom-Robert-Resume.pdf"
+            className="liquid-glass text-white text-sm font-medium px-4 py-2.5 rounded-full hover:bg-white/5 transition-colors flex items-center gap-1.5"
+          >
+            <Download size={14} />
             Resume
           </a>
           <a
@@ -99,18 +111,26 @@ export default function Hero() {
             </a>
           ))}
           <div className="flex gap-2 mt-2 pt-3 border-t border-white/10">
-            <a
-              href="mailto:kristomrobert@gmail.com"
-              className="flex-1 liquid-glass text-white text-sm font-medium px-4 py-2.5 rounded-full hover:bg-white/5 transition-colors text-center"
+            <button
+              onClick={toggle}
+              className="liquid-glass text-white text-sm font-medium px-3 py-2.5 rounded-full hover:bg-white/5 transition-colors flex items-center justify-center"
+              aria-label="Toggle theme"
             >
-              Resume
+              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+            <a
+              href="/resume.pdf"
+              download="Kristom-Robert-Resume.pdf"
+              className="flex-1 liquid-glass text-white text-sm font-medium px-4 py-2.5 rounded-full hover:bg-white/5 transition-colors text-center flex items-center justify-center gap-1.5"
+            >
+              <Download size={14} /> Resume
             </a>
             <a
               href="#contact"
               onClick={() => setMenuOpen(false)}
               className="flex-1 bg-white text-black text-sm font-medium px-4 py-2.5 rounded-full hover:bg-white/90 transition-colors text-center"
             >
-              Hire Me
+              Hire
             </a>
           </div>
         </div>

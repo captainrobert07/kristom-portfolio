@@ -1,4 +1,4 @@
-import { Mail, Phone, Linkedin, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, Linkedin, ArrowUpRight, Download } from 'lucide-react';
 import Reveal from './Reveal';
 
 const channels = [
@@ -89,13 +89,23 @@ export default function Contact() {
         </Reveal>
 
         <Reveal delay={320}>
-          <a
-            href="mailto:kristomrobert@gmail.com?subject=Let's%20talk"
-            className="inline-flex items-center gap-2 bg-white text-black text-sm font-medium px-6 py-3 rounded-full hover:bg-white/90 transition-colors"
-          >
-            Start a conversation
-            <ArrowUpRight size={16} />
-          </a>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="mailto:kristomrobert@gmail.com?subject=Let's%20talk"
+              className="inline-flex items-center gap-2 bg-white text-black text-sm font-medium px-6 py-3 rounded-full hover:bg-white/90 transition-colors"
+            >
+              Start a conversation
+              <ArrowUpRight size={16} />
+            </a>
+            <a
+              href="/resume.pdf"
+              download="Kristom-Robert-Resume.pdf"
+              className="inline-flex items-center gap-2 liquid-glass text-white text-sm font-medium px-6 py-3 rounded-full hover:bg-white/5 transition-colors"
+            >
+              <Download size={16} />
+              Download Resume
+            </a>
+          </div>
         </Reveal>
       </div>
     </section>

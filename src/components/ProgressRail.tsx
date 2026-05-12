@@ -8,7 +8,8 @@ const sections = [
   { id: 'work', num: '04', label: 'Experience' },
   { id: 'stack', num: '05', label: 'Stack' },
   { id: 'recognition', num: '06', label: 'Recognition' },
-  { id: 'contact', num: '07', label: 'Contact' },
+  { id: 'writing', num: '07', label: 'Writing' },
+  { id: 'contact', num: '08', label: 'Contact' },
 ];
 
 export default function ProgressRail() {

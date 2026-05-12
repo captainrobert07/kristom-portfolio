@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Plus, Minus } from 'lucide-react';
 import Reveal from './Reveal';
 
 type Role = {
@@ -8,7 +8,8 @@ type Role = {
   city: string;
   title: string;
   org: string;
-  body: string;
+  summary: string;
+  detail: string;
   tags?: string[];
 };
 
@@ -19,7 +20,10 @@ const roles: Role[] = [
     city: 'UK Operations',
     title: 'Business Intelligence Consultant',
     org: 'Allianz — UK Operations',
-    body: 'Owns 10+ Power BI & Tableau dashboards and 60+ governed reports for UK commercial, revenue, and sales teams. Salesforce data, downstream reporting, audit-ready governance. Cut manual reporting effort 40–50% via Power Automate.',
+    summary:
+      'Owns 10+ Power BI & Tableau dashboards and 60+ governed reports for UK commercial, revenue, and sales teams.',
+    detail:
+      'Salesforce data, downstream reporting, audit-ready governance. Cut manual reporting effort 40–50% via Power Automate. Translates commercial requirements into structured analytical solutions, and translates analysis back into language leadership can act on.',
     tags: ['Power BI', 'Tableau', 'SQL', 'SAS', 'Salesforce', 'Power Automate'],
   },
   {
@@ -28,7 +32,10 @@ const roles: Role[] = [
     city: 'Australia Operations',
     title: 'Data Analyst — BI & Reporting',
     org: 'Allianz — Australia Operations',
-    body: 'Built service, operational, revenue, and billing analytics. Owned incentive, payroll, and performance reporting for 250+ employees. Automated ~90% of recurring reports. Contributed to €20M in business outcomes.',
+    summary:
+      'Built service, operational, revenue, and billing analytics. Owned reporting for 250+ employees.',
+    detail:
+      'Automated ~90% of recurring reports. Contributed to €20M in business outcomes through data-driven process improvements. Designed the manager-level performance dashboard used across leadership reviews.',
     tags: ['SLA Reporting', 'KPI Design', 'Executive Decks', 'Validation'],
   },
   {
@@ -37,7 +44,10 @@ const roles: Role[] = [
     city: 'Insurance Ops',
     title: 'Senior Customer Service Associate',
     org: 'Allianz Services',
-    body: 'End-to-end customer support for Australian insurance customers. Daily/weekly performance reporting for team leads. Quality checks, mentoring, SLA compliance — the operational foundation behind every dashboard I build today.',
+    summary:
+      'End-to-end customer support for Australian insurance customers. Daily/weekly performance reporting for team leads.',
+    detail:
+      'Quality checks, mentoring, SLA compliance — the operational foundation behind every dashboard I build today. This role taught me what frontline data actually looks like before it gets cleaned.',
     tags: ['Quality', 'Mentoring', 'Reporting'],
   },
   {
@@ -46,7 +56,10 @@ const roles: Role[] = [
     city: 'EdTech',
     title: 'Community Manager',
     org: 'Daily Skills',
-    body: 'Led community and customer support for an online learning platform. Designed training, monitored engagement, streamlined support workflows.',
+    summary:
+      'Led community and customer support for an online learning platform.',
+    detail:
+      'Designed training, monitored engagement, streamlined support workflows. Learned how to read user feedback as data instead of noise.',
   },
   {
     when: 'Oct 2020 — Feb 2022',
@@ -54,7 +67,10 @@ const roles: Role[] = [
     city: 'Education',
     title: 'IELTS Educator',
     org: 'Brighten Educational Academy',
-    body: 'Taught speaking, writing, reading, and listening modules. Built course materials, assessments, and learning plans. Where I learned that "good explanation" is a skill — and that most people who know things can\'t teach them.',
+    summary:
+      'Taught speaking, writing, reading, and listening modules. Built course materials and assessments.',
+    detail:
+      'Where I learned that "good explanation" is a skill — and that most people who know things can\'t teach them. Every dashboard I build now has a teacher\'s structure underneath it.',
   },
   {
     when: 'Jul 2016 — Oct 2020',
@@ -62,7 +78,10 @@ const roles: Role[] = [
     city: 'Creative Studio',
     title: 'Head of Creative Services',
     org: 'JC Media',
-    body: 'Led creative strategy and execution across digital and print. Managed teams, owned project planning, delivered brand-consistent visual communication. The design instinct still shows up in every dashboard, deck, and report.',
+    summary:
+      'Led creative strategy and execution across digital and print. Managed teams, owned project planning.',
+    detail:
+      'Delivered brand-consistent visual communication across hundreds of client deliverables. The design instinct still shows up in every dashboard, deck, and report I touch.',
     tags: ['Adobe Suite', 'Figma', 'Premiere Pro', 'Direction'],
   },
 ];
@@ -72,6 +91,7 @@ export default function Experience() {
   const itemRefs = useRef<(HTMLElement | null)[]>([]);
   const [fillPct, setFillPct] = useState(0);
   const [activeIdx, setActiveIdx] = useState(0);
+  const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   useEffect(() => {
     const onScroll = () => {
@@ -86,7 +106,6 @@ export default function Experience() {
       const raw = total > 0 ? passed / total : 0;
       setFillPct(Math.min(1, Math.max(0, raw)) * 100);
 
-      // active item: closest to viewport center
       const mid = vh / 2;
       let closest = 0;
       let closestDist = Infinity;
@@ -106,6 +125,8 @@ export default function Experience() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  const isOpen = (i: number) => openIdx === i;
 
   return (
     <section
@@ -127,15 +148,13 @@ export default function Experience() {
         </Reveal>
 
         <div className="relative" ref={containerRef}>
-          {/* base track */}
           <div className="absolute left-0 sm:left-[180px] top-2 bottom-2 w-px bg-white/10" />
-          {/* fill track */}
           <div
             className="absolute left-0 sm:left-[180px] top-2 w-px bg-gradient-to-b from-white/80 via-white/60 to-white/0 transition-[height] duration-200"
             style={{ height: `calc(${fillPct}% )` }}
           />
 
-          <div className="flex flex-col gap-12">
+          <div className="flex flex-col gap-6">
             {roles.map((r, i) => (
               <article
                 key={r.title + r.when}
@@ -144,13 +163,11 @@ export default function Experience() {
                   activeIdx === i ? 'opacity-100' : 'opacity-65'
                 }`}
               >
-                {/* dot */}
                 <div
                   className={`absolute left-[-4px] sm:left-[177px] top-2 w-2.5 h-2.5 rounded-full ring-4 ring-[#070912] transition-all duration-300 ${
                     activeIdx === i ? 'bg-white scale-150' : 'bg-white/40'
                   }`}
                 />
-                {/* halo for active */}
                 {activeIdx === i && (
                   <div className="absolute left-[-12px] sm:left-[169px] top-[-6px] w-7 h-7 rounded-full bg-white/10 blur-md animate-pulse" />
                 )}
@@ -170,25 +187,55 @@ export default function Experience() {
                   {r.when} · {r.mode}
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-medium leading-snug mb-1">
-                  {r.title}
-                </h3>
-                <div className="text-white/55 text-sm mb-4">{r.org}</div>
-                <p className="text-white/55 text-sm leading-relaxed max-w-xl mb-4">
-                  {r.body}
-                </p>
-                {r.tags && (
-                  <div className="flex flex-wrap gap-1.5">
-                    {r.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="liquid-glass text-white/70 text-[11px] tracking-wide px-2.5 py-1 rounded-full"
-                      >
-                        {t}
-                      </span>
-                    ))}
+                <button
+                  type="button"
+                  onClick={() => setOpenIdx(isOpen(i) ? null : i)}
+                  aria-expanded={isOpen(i)}
+                  className="w-full text-left group flex items-start justify-between gap-4 pr-2"
+                >
+                  <div className="flex-1">
+                    <h3 className="text-xl sm:text-2xl font-medium leading-snug mb-1 group-hover:text-white">
+                      {r.title}
+                    </h3>
+                    <div className="text-white/55 text-sm mb-3">{r.org}</div>
+                    <p className="text-white/55 text-sm leading-relaxed max-w-xl">
+                      {r.summary}
+                    </p>
                   </div>
-                )}
+                  <span
+                    className={`shrink-0 mt-1 liquid-glass rounded-full p-2 text-white/70 group-hover:text-white transition-transform duration-300 ${
+                      isOpen(i) ? 'rotate-180' : ''
+                    }`}
+                    aria-hidden="true"
+                  >
+                    {isOpen(i) ? <Minus size={14} /> : <Plus size={14} />}
+                  </span>
+                </button>
+
+                {/* expandable detail */}
+                <div
+                  className={`grid transition-all duration-500 ease-out ${
+                    isOpen(i) ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0 mt-0'
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <p className="text-white/65 text-sm leading-relaxed max-w-xl mb-4">
+                      {r.detail}
+                    </p>
+                    {r.tags && (
+                      <div className="flex flex-wrap gap-1.5">
+                        {r.tags.map((t) => (
+                          <span
+                            key={t}
+                            className="liquid-glass text-white/70 text-[11px] tracking-wide px-2.5 py-1 rounded-full"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
               </article>
             ))}
           </div>

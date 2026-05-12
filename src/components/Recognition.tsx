@@ -49,7 +49,7 @@ export default function Recognition() {
             </Reveal>
             <div className="border-t border-white/10">
               {awards.map((a, i) => (
-                <Reveal key={a.num} delay={i * 60}>
+                <Reveal key={a.num} delay={i * 60} variant="left">
                   <div className="grid grid-cols-[40px_1fr_auto] gap-4 items-center py-5 border-b border-white/10 group hover:pl-3 transition-all duration-300">
                     <span className="text-white/30 text-xs font-mono tracking-wide">/{a.num}</span>
                     <h4 className="text-base sm:text-lg font-medium leading-snug group-hover:text-white text-white/90">
@@ -63,7 +63,7 @@ export default function Recognition() {
           </div>
 
           <div className="md:col-span-5 md:pl-8 md:border-l md:border-white/10 space-y-10">
-            <Reveal delay={120}>
+            <Reveal delay={120} variant="right">
               <div>
                 <div className="flex items-center gap-2 text-white/50 text-xs tracking-[0.22em] uppercase mb-6">
                   <GraduationCap size={14} />

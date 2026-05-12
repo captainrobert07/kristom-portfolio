@@ -56,7 +56,7 @@ export default function Capabilities() {
           {pillars.map((p, i) => {
             const Icon = p.icon;
             return (
-              <Reveal key={p.title} delay={i * 90}>
+              <Reveal key={p.title} delay={i * 90} variant="scale">
                 <div className="group relative bg-black/55 p-8 sm:p-10 transition-colors hover:bg-black/35 h-full">
                   <div className="flex items-start justify-between mb-8">
                     <div className="liquid-glass rounded-xl p-3">
