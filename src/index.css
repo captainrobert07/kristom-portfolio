@@ -37,6 +37,11 @@ body {
   overflow: hidden;
 }
 
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.3333%); }
+}
+
 .liquid-glass::before {
   content: '';
   position: absolute;

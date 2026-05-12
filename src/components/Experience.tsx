@@ -1,4 +1,6 @@
+import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import Reveal from './Reveal';
 
 type Role = {
   when: string;
@@ -66,30 +68,92 @@ const roles: Role[] = [
 ];
 
 export default function Experience() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLElement | null)[]>([]);
+  const [fillPct, setFillPct] = useState(0);
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const el = containerRef.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const start = vh * 0.5;
+      const end = vh * 0.5;
+      const total = r.height - (start + (vh - end));
+      const passed = start - r.top;
+      const raw = total > 0 ? passed / total : 0;
+      setFillPct(Math.min(1, Math.max(0, raw)) * 100);
+
+      // active item: closest to viewport center
+      const mid = vh / 2;
+      let closest = 0;
+      let closestDist = Infinity;
+      itemRefs.current.forEach((it, i) => {
+        if (!it) return;
+        const ir = it.getBoundingClientRect();
+        const center = ir.top + ir.height / 2;
+        const d = Math.abs(center - mid);
+        if (d < closestDist) {
+          closestDist = d;
+          closest = i;
+        }
+      });
+      setActiveIdx(closest);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <section
       id="work"
       className="relative bg-black text-white py-24 sm:py-32 px-6 sm:px-12"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center gap-3 mb-6 text-white/50 text-xs tracking-[0.3em] uppercase">
-          <span className="w-8 h-px bg-white/30" />
-          Experience
-        </div>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-tight mb-16 max-w-3xl">
-          Six years, four industries,
-          <span className="text-white/40"> one through-line.</span>
-        </h2>
+        <Reveal>
+          <div className="flex items-center gap-3 mb-6 text-white/50 text-xs tracking-[0.3em] uppercase">
+            <span className="w-8 h-px bg-white/30" />
+            Experience
+          </div>
+        </Reveal>
+        <Reveal delay={80}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-tight mb-16 max-w-3xl">
+            Six years, four industries,
+            <span className="text-white/40"> one through-line.</span>
+          </h2>
+        </Reveal>
 
-        <div className="relative">
+        <div className="relative" ref={containerRef}>
+          {/* base track */}
           <div className="absolute left-0 sm:left-[180px] top-2 bottom-2 w-px bg-white/10" />
+          {/* fill track */}
+          <div
+            className="absolute left-0 sm:left-[180px] top-2 w-px bg-gradient-to-b from-white/80 via-white/60 to-white/0 transition-[height] duration-200"
+            style={{ height: `calc(${fillPct}% )` }}
+          />
+
           <div className="flex flex-col gap-12">
-            {roles.map((r) => (
+            {roles.map((r, i) => (
               <article
                 key={r.title + r.when}
-                className="relative pl-8 sm:pl-[220px]"
+                ref={(el) => (itemRefs.current[i] = el)}
+                className={`relative pl-8 sm:pl-[220px] transition-opacity duration-500 ${
+                  activeIdx === i ? 'opacity-100' : 'opacity-65'
+                }`}
               >
-                <div className="absolute left-[-4px] sm:left-[177px] top-2 w-2.5 h-2.5 rounded-full bg-white/80 ring-4 ring-black" />
+                {/* dot */}
+                <div
+                  className={`absolute left-[-4px] sm:left-[177px] top-2 w-2.5 h-2.5 rounded-full ring-4 ring-black transition-all duration-300 ${
+                    activeIdx === i ? 'bg-white scale-150' : 'bg-white/40'
+                  }`}
+                />
+                {/* halo for active */}
+                {activeIdx === i && (
+                  <div className="absolute left-[-12px] sm:left-[169px] top-[-6px] w-7 h-7 rounded-full bg-white/10 blur-md animate-pulse" />
+                )}
 
                 <div className="absolute left-0 top-0 w-0 sm:w-[160px] hidden sm:block">
                   <div className="text-white/80 text-xs tracking-[0.18em] uppercase font-medium">

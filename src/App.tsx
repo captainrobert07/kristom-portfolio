@@ -7,14 +7,29 @@ import Stack from './components/Stack';
 import Recognition from './components/Recognition';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ProgressRail from './components/ProgressRail';
+import Marquee from './components/Marquee';
+
+const TOOLS_BAND = [
+  'Power BI', 'Tableau', 'SQL', 'SAS', 'Power Automate', 'Salesforce',
+  'Python', 'Generative AI', 'Azure ADLS', 'Power Apps', 'Excel', 'ETL',
+];
+
+const PROOF_BAND = [
+  '€20M Outcomes', '90% Reporting Automated', '60+ Reports Governed',
+  '11 Internal Awards', 'Stevie Gold Medal', '4 Years · Allianz', 'UK · AU · IN',
+];
 
 export default function App() {
   return (
     <main className="bg-black text-white">
+      <ProgressRail />
       <Hero />
       <About />
+      <Marquee items={TOOLS_BAND} speed={50} />
       <Capabilities />
       <Impact />
+      <Marquee items={PROOF_BAND} speed={45} reverse />
       <Experience />
       <Stack />
       <Recognition />

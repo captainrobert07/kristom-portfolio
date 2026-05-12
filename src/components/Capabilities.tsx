@@ -1,4 +1,5 @@
 import { LineChart, Workflow, ShieldCheck, MessagesSquare } from 'lucide-react';
+import Reveal from './Reveal';
 
 const pillars = [
   {
@@ -38,48 +39,51 @@ export default function Capabilities() {
       className="relative bg-black text-white py-24 sm:py-32 px-6 sm:px-12"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center gap-3 mb-6 text-white/50 text-xs tracking-[0.3em] uppercase">
-          <span className="w-8 h-px bg-white/30" />
-          Capabilities
-        </div>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-tight mb-16 max-w-3xl">
-          Four things I do well —
-          <span className="text-white/40"> regardless of the industry on the door.</span>
-        </h2>
+        <Reveal>
+          <div className="flex items-center gap-3 mb-6 text-white/50 text-xs tracking-[0.3em] uppercase">
+            <span className="w-8 h-px bg-white/30" />
+            Capabilities
+          </div>
+        </Reveal>
+        <Reveal delay={80}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-tight mb-16 max-w-3xl">
+            Four things I do well —
+            <span className="text-white/40"> regardless of the industry on the door.</span>
+          </h2>
+        </Reveal>
 
         <div className="grid md:grid-cols-2 gap-px bg-white/5 border border-white/5 rounded-2xl overflow-hidden">
-          {pillars.map((p) => {
+          {pillars.map((p, i) => {
             const Icon = p.icon;
             return (
-              <div
-                key={p.title}
-                className="group relative bg-black p-8 sm:p-10 transition-colors hover:bg-white/[0.03]"
-              >
-                <div className="flex items-start justify-between mb-8">
-                  <div className="liquid-glass rounded-xl p-3">
-                    <Icon size={20} strokeWidth={1.5} className="text-white" />
+              <Reveal key={p.title} delay={i * 90}>
+                <div className="group relative bg-black p-8 sm:p-10 transition-colors hover:bg-white/[0.03] h-full">
+                  <div className="flex items-start justify-between mb-8">
+                    <div className="liquid-glass rounded-xl p-3">
+                      <Icon size={20} strokeWidth={1.5} className="text-white" />
+                    </div>
+                    <div className="text-white/30 text-xs tracking-[0.22em] font-mono">
+                      {p.label}
+                    </div>
                   </div>
-                  <div className="text-white/30 text-xs tracking-[0.22em] font-mono">
-                    {p.label}
+                  <h3 className="text-xl sm:text-2xl font-medium leading-snug mb-4">
+                    {p.title}
+                  </h3>
+                  <p className="text-white/55 text-sm leading-relaxed mb-6 max-w-md">
+                    {p.body}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {p.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="liquid-glass text-white/70 text-[11px] tracking-wide px-2.5 py-1 rounded-full"
+                      >
+                        {t}
+                      </span>
+                    ))}
                   </div>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-medium leading-snug mb-4">
-                  {p.title}
-                </h3>
-                <p className="text-white/55 text-sm leading-relaxed mb-6 max-w-md">
-                  {p.body}
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {p.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="liquid-glass text-white/70 text-[11px] tracking-wide px-2.5 py-1 rounded-full"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>

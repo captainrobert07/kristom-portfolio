@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import Reveal from './Reveal';
 
 type Stat = {
   prefix?: string;
@@ -39,32 +40,15 @@ const stats: Stat[] = [
   },
 ];
 
-function useCount(target: number, run: boolean, duration = 1500) {
-  const [v, setV] = useState(0);
-  useEffect(() => {
-    if (!run) return;
-    const start = performance.now();
-    let raf: number;
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - t, 3);
-      setV(Math.floor(eased * target));
-      if (t < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [target, run, duration]);
-  return v;
-}
-
-function StatCard({ stat, run }: { stat: Stat; run: boolean }) {
-  const v = useCount(stat.value, run);
+function StatCard({ stat, p }: { stat: Stat; p: number }) {
+  const eased = 1 - Math.pow(1 - Math.min(1, Math.max(0, p)), 3);
+  const v = Math.floor(eased * stat.value);
   return (
     <div className="relative bg-black p-8 sm:p-10 group transition-colors hover:bg-white/[0.03]">
       <div className="text-white/40 text-xs tracking-[0.22em] uppercase mb-6">
         {stat.label}
       </div>
-      <div className="text-white text-5xl sm:text-6xl lg:text-7xl font-medium tracking-tight mb-5">
+      <div className="text-white text-5xl sm:text-6xl lg:text-7xl font-medium tracking-tight mb-5 tabular-nums">
         {stat.prefix}
         {v}
         <span className="text-white/50">{stat.suffix}</span>
@@ -77,36 +61,54 @@ function StatCard({ stat, run }: { stat: Stat; run: boolean }) {
 }
 
 export default function Impact() {
-  const [run, setRun] = useState(false);
+  const [progress, setProgress] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!ref.current) return;
-    const obs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && setRun(true)),
-      { threshold: 0.25 },
-    );
-    obs.observe(ref.current);
-    return () => obs.disconnect();
+    const onScroll = () => {
+      const el = ref.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // section enters bottom of viewport (start) -> exits top (end)
+      const start = vh * 0.85;
+      const end = vh * 0.25;
+      const span = start - end;
+      const passed = start - r.top;
+      const raw = passed / span;
+      setProgress(Math.min(1, Math.max(0, raw)));
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
-    <section className="relative bg-black text-white py-24 sm:py-32 px-6 sm:px-12">
+    <section
+      id="impact"
+      className="relative bg-black text-white py-24 sm:py-32 px-6 sm:px-12"
+    >
       <div className="max-w-6xl mx-auto" ref={ref}>
-        <div className="flex items-center gap-3 mb-6 text-white/50 text-xs tracking-[0.3em] uppercase">
-          <span className="w-8 h-px bg-white/30" />
-          Impact
-        </div>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-tight mb-16 max-w-3xl">
-          Measurable outcomes,
-          <span className="text-white/40"> not anecdotes.</span>
-        </h2>
+        <Reveal>
+          <div className="flex items-center gap-3 mb-6 text-white/50 text-xs tracking-[0.3em] uppercase">
+            <span className="w-8 h-px bg-white/30" />
+            Impact
+          </div>
+        </Reveal>
+        <Reveal delay={80}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-tight mb-16 max-w-3xl">
+            Measurable outcomes,
+            <span className="text-white/40"> not anecdotes.</span>
+          </h2>
+        </Reveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/5 rounded-2xl overflow-hidden">
-          {stats.map((s) => (
-            <StatCard key={s.label} stat={s} run={run} />
-          ))}
-        </div>
+        <Reveal delay={150}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/5 rounded-2xl overflow-hidden">
+            {stats.map((s) => (
+              <StatCard key={s.label} stat={s} p={progress} />
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );
