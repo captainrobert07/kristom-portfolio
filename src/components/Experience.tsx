@@ -146,7 +146,7 @@ export default function Experience() {
               >
                 {/* dot */}
                 <div
-                  className={`absolute left-[-4px] sm:left-[177px] top-2 w-2.5 h-2.5 rounded-full ring-4 ring-[#0a0908] transition-all duration-300 ${
+                  className={`absolute left-[-4px] sm:left-[177px] top-2 w-2.5 h-2.5 rounded-full ring-4 ring-[#070912] transition-all duration-300 ${
                     activeIdx === i ? 'bg-white scale-150' : 'bg-white/40'
                   }`}
                 />

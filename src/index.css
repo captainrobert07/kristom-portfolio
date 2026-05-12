@@ -15,7 +15,7 @@ html {
 html, body, #root {
   margin: 0;
   padding: 0;
-  background: #0a0908;
+  background: #070912;
 }
 
 body {
@@ -45,6 +45,11 @@ body {
 @keyframes sheenDrift {
   0%, 100% { transform: translateY(0); opacity: 0.28; }
   50%      { transform: translateY(-3vh); opacity: 0.42; }
+}
+
+@keyframes dustDrift {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(-600px, -300px); }
 }
 
 .liquid-glass::before {
