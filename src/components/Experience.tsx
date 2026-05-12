@@ -16,7 +16,7 @@ const roles: Role[] = [
   {
     when: 'Mar 2025 — Present',
     mode: 'Hybrid',
-    city: 'Bengaluru → London',
+    city: 'UK Operations',
     title: 'Business Intelligence Consultant',
     org: 'Allianz — UK Operations',
     body: 'Owns 10+ Power BI & Tableau dashboards and 60+ governed reports for UK commercial, revenue, and sales teams. Salesforce data, downstream reporting, audit-ready governance. Cut manual reporting effort 40–50% via Power Automate.',
@@ -25,7 +25,7 @@ const roles: Role[] = [
   {
     when: 'Jan 2024 — Mar 2025',
     mode: 'Onsite',
-    city: 'Bengaluru → Sydney',
+    city: 'Australia Operations',
     title: 'Data Analyst — BI & Reporting',
     org: 'Allianz — Australia Operations',
     body: 'Built service, operational, revenue, and billing analytics. Owned incentive, payroll, and performance reporting for 250+ employees. Automated ~90% of recurring reports. Contributed to €20M in business outcomes.',
@@ -34,7 +34,7 @@ const roles: Role[] = [
   {
     when: 'Feb 2022 — Dec 2023',
     mode: 'Onsite',
-    city: 'Bengaluru',
+    city: 'Insurance Ops',
     title: 'Senior Customer Service Associate',
     org: 'Allianz Services',
     body: 'End-to-end customer support for Australian insurance customers. Daily/weekly performance reporting for team leads. Quality checks, mentoring, SLA compliance — the operational foundation behind every dashboard I build today.',
@@ -43,7 +43,7 @@ const roles: Role[] = [
   {
     when: 'Apr 2021 — Feb 2022',
     mode: 'Remote',
-    city: 'Bengaluru',
+    city: 'EdTech',
     title: 'Community Manager',
     org: 'Daily Skills',
     body: 'Led community and customer support for an online learning platform. Designed training, monitored engagement, streamlined support workflows.',
@@ -51,7 +51,7 @@ const roles: Role[] = [
   {
     when: 'Oct 2020 — Feb 2022',
     mode: 'Onsite',
-    city: 'Bengaluru',
+    city: 'Education',
     title: 'IELTS Educator',
     org: 'Brighten Educational Academy',
     body: 'Taught speaking, writing, reading, and listening modules. Built course materials, assessments, and learning plans. Where I learned that "good explanation" is a skill — and that most people who know things can\'t teach them.',
@@ -59,7 +59,7 @@ const roles: Role[] = [
   {
     when: 'Jul 2016 — Oct 2020',
     mode: 'Hybrid',
-    city: 'Bengaluru',
+    city: 'Creative Studio',
     title: 'Head of Creative Services',
     org: 'JC Media',
     body: 'Led creative strategy and execution across digital and print. Managed teams, owned project planning, delivered brand-consistent visual communication. The design instinct still shows up in every dashboard, deck, and report.',

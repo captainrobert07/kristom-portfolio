@@ -16,7 +16,7 @@ export default function Footer() {
             Available Q2 2026
           </span>
           <span className="hidden sm:inline">·</span>
-          <span>Bengaluru · GMT+5:30</span>
+          <span>Remote · GMT+5:30</span>
         </div>
       </div>
     </footer>
