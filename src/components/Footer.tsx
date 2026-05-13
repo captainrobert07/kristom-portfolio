@@ -18,7 +18,7 @@ export default function Footer() {
           <span className="hidden sm:inline">·</span>
           <span className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Available Q2 2026
+            Available
           </span>
           <span className="hidden sm:inline">·</span>
           <span>Remote · GMT+5:30</span>

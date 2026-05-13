@@ -141,7 +141,7 @@ export default function Hero() {
       <div className="absolute bottom-0 left-0 z-20 px-6 sm:px-12 pb-10 sm:pb-16 max-w-2xl">
         <div className="liquid-glass inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-5 text-white/80 text-xs">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          Available Q2 2026 · Remote / Hybrid
+          Available · Remote / Hybrid
         </div>
         <h1 className="text-white text-4xl sm:text-5xl lg:text-7xl font-medium leading-[1.02] tracking-tight mb-4 [perspective:600px]">
           <span className="block">

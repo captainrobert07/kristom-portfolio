@@ -62,7 +62,7 @@ export default function Contact() {
 
         <Reveal delay={160}>
           <p className="text-white/60 text-base sm:text-lg leading-relaxed max-w-xl mx-auto mb-14">
-            Available Q2 2026 for consulting, contract, and full-time roles. Open
+            Currently open to consulting, contract, and full-time roles. Open
             to BI, analytics engineering, and data-product work — wherever the
             decisions need a <SerifAccent gradient="warm">translator</SerifAccent>.
           </p>
