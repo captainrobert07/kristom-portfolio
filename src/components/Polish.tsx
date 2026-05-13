@@ -130,7 +130,7 @@ type TiltProps = {
   glow?: boolean;
   style?: CSSProperties;
 };
-export function TiltCard({ children, className = '', max = 3, glow = true, style }: TiltProps) {
+export function TiltCard({ children, className = '', max = 3, glow = false, style }: TiltProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const onMove = (e: ReactMouseEvent<HTMLDivElement>) => {

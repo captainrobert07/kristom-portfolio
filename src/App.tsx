@@ -14,7 +14,6 @@ import BackgroundField from './components/BackgroundField';
 import Cursor from './components/Cursor';
 import {
   ViewportFrame,
-  Spotlight,
   CursorTrail,
   LogoWall,
   DividerBand,
@@ -29,7 +28,6 @@ export default function App() {
   return (
     <main className="relative text-white">
       <BackgroundField />
-      <Spotlight />
       <ViewportFrame />
       <ProgressRail />
       <Cursor />
