@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Reveal from './Reveal';
 import { BigNumeral, ChartGlyph, GlyphBar, HairlineGrid, Timecode, EdgeTag } from './SectionDecor';
+import { SerifAccent, TiltCard, LightLeakOnEnter, HairlineSweepOnEnter } from './Polish';
 
 type Stat = {
   prefix?: string;
@@ -41,23 +42,58 @@ const stats: Stat[] = [
   },
 ];
 
+/* digit flicker — show random digits during the easing-in phase, settle when locked */
+function FlickerDigit({ target, settled }: { target: number; settled: boolean }) {
+  const [show, setShow] = useState(target);
+  const lastTarget = useRef(target);
+
+  useEffect(() => {
+    // when target changes during scroll-scrub, briefly flicker before showing the new target
+    if (target === lastTarget.current && settled) return;
+    lastTarget.current = target;
+
+    if (settled) {
+      // about to settle — fast flicker to the final value
+      let n = 0;
+      const id = setInterval(() => {
+        if (n++ > 4) {
+          clearInterval(id);
+          setShow(target);
+        } else {
+          setShow(Math.floor(Math.random() * 10 ** Math.max(1, String(target).length)));
+        }
+      }, 45);
+      return () => clearInterval(id);
+    }
+    setShow(target);
+  }, [target, settled]);
+
+  return <span className={settled ? 'is-flickering' : ''}>{show}</span>;
+}
+
 function StatCard({ stat, p }: { stat: Stat; p: number }) {
   const eased = 1 - Math.pow(1 - Math.min(1, Math.max(0, p)), 3);
   const v = Math.floor(eased * stat.value);
+  // settled = approached final number
+  const settled = p > 0.98;
   return (
-    <div className="relative bg-black/55 p-8 sm:p-10 group transition-colors hover:bg-black/35">
-      <div className="text-white/40 text-xs tracking-[0.22em] uppercase mb-6">
-        {stat.label}
+    <TiltCard className="h-full" max={2.5}>
+      <div className="glass-card relative h-full p-8 sm:p-10 transition-colors">
+        <div className="text-white/40 text-[10px] tracking-[0.32em] uppercase mb-6 font-mono">
+          {stat.label}
+        </div>
+        <div className="text-white text-5xl sm:text-6xl lg:text-7xl font-medium tracking-tight mb-5 tabular-nums leading-none">
+          {stat.prefix && <span className="serif-italic gradient-warm">{stat.prefix}</span>}
+          <FlickerDigit target={v} settled={settled} />
+          {stat.suffix && (
+            <span className="serif-italic gradient-warm text-[0.7em]">{stat.suffix}</span>
+          )}
+        </div>
+        <div className="text-white/55 text-sm leading-relaxed max-w-xs relative z-10">
+          {stat.detail}
+        </div>
       </div>
-      <div className="text-white text-5xl sm:text-6xl lg:text-7xl font-medium tracking-tight mb-5 tabular-nums">
-        {stat.prefix}
-        {v}
-        <span className="text-white/50">{stat.suffix}</span>
-      </div>
-      <div className="text-white/50 text-sm leading-relaxed max-w-xs">
-        {stat.detail}
-      </div>
-    </div>
+    </TiltCard>
   );
 }
 
@@ -71,7 +107,6 @@ export default function Impact() {
       if (!el) return;
       const r = el.getBoundingClientRect();
       const vh = window.innerHeight;
-      // section enters bottom of viewport (start) -> exits top (end)
       const start = vh * 0.85;
       const end = vh * 0.25;
       const span = start - end;
@@ -87,8 +122,10 @@ export default function Impact() {
   return (
     <section
       id="impact"
-      className="relative text-white py-24 sm:py-32 px-6 sm:px-12 overflow-hidden"
+      className="relative text-white py-24 sm:py-32 px-6 sm:px-12 overflow-hidden section-tint-warm"
     >
+      <HairlineSweepOnEnter />
+      <LightLeakOnEnter variant="warm" />
       <HairlineGrid opacity={0.04} />
       <BigNumeral num="03" position="right" />
       <ChartGlyph className="absolute bottom-12 left-6 w-[36vw] h-[18vw] max-w-[480px] max-h-[240px] opacity-90 pointer-events-none" />
@@ -102,9 +139,10 @@ export default function Impact() {
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-tight mb-16 max-w-3xl">
-            Measurable outcomes,
-            <span className="text-white/40"> not anecdotes.</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-[1.05] tracking-tight mb-16 max-w-3xl">
+            Measurable <SerifAccent gradient="warm">outcomes</SerifAccent>,
+            <br className="hidden sm:block" />
+            not <SerifAccent gradient="cool">anecdotes</SerifAccent>.
           </h2>
         </Reveal>
 
@@ -115,7 +153,7 @@ export default function Impact() {
           </div>
         </Reveal>
         <Reveal delay={150} variant="scale">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {stats.map((s) => (
               <StatCard key={s.label} stat={s} p={progress} />
             ))}

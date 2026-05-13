@@ -1,6 +1,7 @@
 import { ArrowUpRight, BookOpen } from 'lucide-react';
 import Reveal from './Reveal';
 import { BigNumeral, EdgeTag, FlowGlyph, Timecode } from './SectionDecor';
+import { SerifAccent, TiltCard, LightLeakOnEnter, HairlineSweepOnEnter } from './Polish';
 
 const posts = [
   {
@@ -18,8 +19,10 @@ export default function Writing() {
   return (
     <section
       id="writing"
-      className="relative text-white py-24 sm:py-32 px-6 sm:px-12 overflow-hidden"
+      className="relative text-white py-24 sm:py-32 px-6 sm:px-12 overflow-hidden section-tint-warm"
     >
+      <HairlineSweepOnEnter />
+      <LightLeakOnEnter variant="warm" />
       <BigNumeral num="07" position="right" />
       <FlowGlyph className="absolute bottom-12 left-6 w-[28vw] h-[16vw] max-w-[360px] max-h-[200px] opacity-70 pointer-events-none" />
       <EdgeTag side="left">WRITING · 07</EdgeTag>
@@ -32,52 +35,52 @@ export default function Writing() {
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-tight mb-16 max-w-3xl">
-            Notes from the work —
-            <span className="text-white/40"> what I've learned, written down.</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-[1.05] tracking-tight mb-16 max-w-3xl">
+            Notes from the work — what I've{' '}
+            <SerifAccent gradient="warm">learned</SerifAccent>, written down.
           </h2>
         </Reveal>
 
         <div className="grid md:grid-cols-12 gap-6">
           {posts.map((p, i) => (
             <Reveal key={p.title} delay={i * 80} className="md:col-span-12">
-              <a
-                href={p.href}
-                className="group block relative rounded-2xl border border-white/10 bg-black/55 backdrop-blur-sm hover:bg-black/35 transition-colors overflow-hidden"
-              >
-                <div className="grid md:grid-cols-12 gap-0">
-                  {/* meta column */}
-                  <div className="md:col-span-3 p-8 sm:p-10 border-b md:border-b-0 md:border-r border-white/10">
-                    <div className="liquid-glass inline-flex items-center gap-2 text-white/80 text-[11px] tracking-[0.22em] uppercase px-3 py-1.5 rounded-full mb-6">
-                      <BookOpen size={12} />
-                      {p.tag}
+              <TiltCard max={2.5}>
+                <a
+                  href={p.href}
+                  className="group block relative glass-card transition-colors overflow-hidden"
+                >
+                  <div className="grid md:grid-cols-12 gap-0 relative z-10">
+                    <div className="md:col-span-3 p-8 sm:p-10 border-b md:border-b-0 md:border-r border-white/10">
+                      <div className="liquid-glass inline-flex items-center gap-2 text-white/80 text-[11px] tracking-[0.22em] uppercase px-3 py-1.5 rounded-full mb-6">
+                        <BookOpen size={12} />
+                        {p.tag}
+                      </div>
+                      <div className="text-white/55 text-xs tracking-[0.18em] font-mono uppercase">
+                        {p.read}
+                      </div>
+                      <div className="text-white/35 text-xs tracking-[0.18em] font-mono uppercase mt-1.5">
+                        {p.when}
+                      </div>
                     </div>
-                    <div className="text-white/40 text-xs tracking-wider">
-                      {p.read}
-                    </div>
-                    <div className="text-white/30 text-xs tracking-wider mt-1">
-                      {p.when}
-                    </div>
-                  </div>
 
-                  {/* content */}
-                  <div className="md:col-span-9 p-8 sm:p-10 flex flex-col justify-between gap-8">
-                    <h3 className="text-2xl sm:text-3xl font-medium leading-tight tracking-tight max-w-2xl group-hover:text-white">
-                      {p.title}
-                    </h3>
-                    <div className="flex items-center justify-between">
-                      <p className="text-white/55 text-sm leading-relaxed max-w-xl pr-8">
-                        {p.excerpt}
-                      </p>
-                      <ArrowUpRight
-                        size={28}
-                        strokeWidth={1.2}
-                        className="shrink-0 text-white/40 group-hover:text-white group-hover:-translate-y-1 group-hover:translate-x-1 transition-all"
-                      />
+                    <div className="md:col-span-9 p-8 sm:p-10 flex flex-col justify-between gap-8">
+                      <h3 className="font-serif-display text-3xl sm:text-4xl italic font-light leading-[1.08] tracking-tight max-w-2xl group-hover:text-white">
+                        {p.title}
+                      </h3>
+                      <div className="flex items-center justify-between gap-6">
+                        <p className="text-white/60 text-sm leading-relaxed max-w-xl">
+                          {p.excerpt}
+                        </p>
+                        <ArrowUpRight
+                          size={32}
+                          strokeWidth={1.2}
+                          className="shrink-0 text-white/40 group-hover:text-white group-hover:-translate-y-1 group-hover:translate-x-1 transition-all"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </a>
+                </a>
+              </TiltCard>
             </Reveal>
           ))}
         </div>

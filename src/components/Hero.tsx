@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ChevronDown, Infinity, Menu, X, Sun, Moon, Download } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
+import { MagneticButton, SerifAccent, StaggerWord } from './Polish';
 
 const BG_VIDEO =
   'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260511_230229_7c9bc431-46cf-489a-948d-e8144d8eb5d4.mp4';
@@ -142,8 +143,19 @@ export default function Hero() {
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           Available Q2 2026 · Remote / Hybrid
         </div>
-        <h1 className="text-white text-4xl sm:text-5xl lg:text-6xl font-medium leading-tight tracking-tight mb-4">
-          Data, Translated Into Decisions.
+        <h1 className="text-white text-4xl sm:text-5xl lg:text-7xl font-medium leading-[1.02] tracking-tight mb-4 [perspective:600px]">
+          <span className="block">
+            <StaggerWord per={28}>Data,</StaggerWord>
+          </span>
+          <span className="block">
+            <SerifAccent gradient="warm" className="text-[1.06em]">
+              <StaggerWord base={250} per={28}>Translated</StaggerWord>
+            </SerifAccent>{' '}
+            <StaggerWord base={650} per={28}>Into</StaggerWord>
+          </span>
+          <span className="block">
+            <StaggerWord base={900} per={28}>Decisions.</StaggerWord>
+          </span>
         </h1>
         <p className="text-white/60 text-sm leading-relaxed mb-7 max-w-md">
           I sit between the people who ship the work and the people who need to
@@ -152,18 +164,18 @@ export default function Hero() {
           actually use.
         </p>
         <div className="flex flex-wrap items-center gap-3">
-          <a
+          <MagneticButton
             href="#work"
-            className="bg-white text-black text-sm sm:text-base font-medium px-6 sm:px-7 py-3 rounded-full hover:bg-white/90 transition-colors"
+            className="inline-flex items-center bg-white text-black text-sm sm:text-base font-medium px-6 sm:px-7 py-3 rounded-full hover:bg-white/90 transition-colors"
           >
             See My Work
-          </a>
-          <a
+          </MagneticButton>
+          <MagneticButton
             href="#about"
-            className="liquid-glass text-white text-sm sm:text-base font-medium px-6 sm:px-7 py-3 rounded-full hover:bg-white/5 transition-colors"
+            className="inline-flex items-center liquid-glass text-white text-sm sm:text-base font-medium px-6 sm:px-7 py-3 rounded-full hover:bg-white/5 transition-colors"
           >
             Read Profile
-          </a>
+          </MagneticButton>
         </div>
       </div>
     </section>

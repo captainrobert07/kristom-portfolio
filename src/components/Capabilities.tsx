@@ -1,6 +1,7 @@
 import { LineChart, Workflow, ShieldCheck, MessagesSquare } from 'lucide-react';
 import Reveal from './Reveal';
 import { BigNumeral, EdgeTag, OrbitGlyph, HairlineGrid, Timecode } from './SectionDecor';
+import { SerifAccent, TiltCard, LightLeakOnEnter, HairlineSweepOnEnter } from './Polish';
 
 const pillars = [
   {
@@ -37,8 +38,10 @@ export default function Capabilities() {
   return (
     <section
       id="capabilities"
-      className="relative text-white py-24 sm:py-32 px-6 sm:px-12 overflow-hidden"
+      className="relative text-white py-24 sm:py-32 px-6 sm:px-12 overflow-hidden section-tint-cool"
     >
+      <HairlineSweepOnEnter />
+      <LightLeakOnEnter variant="cool" />
       <HairlineGrid opacity={0.04} />
       <BigNumeral num="02" position="left" />
       <OrbitGlyph className="absolute top-1/2 right-[-8vw] -translate-y-1/2 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] opacity-80 pointer-events-none" />
@@ -52,43 +55,45 @@ export default function Capabilities() {
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-tight mb-16 max-w-3xl">
-            Four things I do well —
-            <span className="text-white/40"> regardless of the industry on the door.</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-[1.05] tracking-tight mb-16 max-w-3xl">
+            Four things I do well — <SerifAccent gradient="warm">regardless</SerifAccent> of the{' '}
+            <SerifAccent gradient="cool">industry</SerifAccent> on the door.
           </h2>
         </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-px bg-white/5 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm">
+        <div className="grid md:grid-cols-2 gap-5">
           {pillars.map((p, i) => {
             const Icon = p.icon;
             return (
               <Reveal key={p.title} delay={i * 90} variant="scale">
-                <div className="group relative bg-black/55 p-8 sm:p-10 transition-colors hover:bg-black/35 h-full">
-                  <div className="flex items-start justify-between mb-8">
-                    <div className="liquid-glass rounded-xl p-3">
-                      <Icon size={20} strokeWidth={1.5} className="text-white" />
+                <TiltCard className="h-full">
+                  <div className="glass-card relative h-full p-8 sm:p-10 transition-colors">
+                    <div className="flex items-start justify-between mb-8">
+                      <div className="liquid-glass rounded-xl p-3">
+                        <Icon size={20} strokeWidth={1.5} className="text-white" />
+                      </div>
+                      <div className="text-white/30 text-xs tracking-[0.32em] font-mono numeral-shift">
+                        / {p.label}
+                      </div>
                     </div>
-                    <div className="text-white/30 text-xs tracking-[0.22em] font-mono">
-                      {p.label}
+                    <h3 className="font-serif-display text-2xl sm:text-3xl leading-[1.05] tracking-tight mb-4 italic font-light">
+                      {p.title}
+                    </h3>
+                    <p className="text-white/60 text-sm leading-relaxed mb-6 max-w-md">
+                      {p.body}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 relative z-10">
+                      {p.tags.map((t) => (
+                        <span
+                          key={t}
+                          className="liquid-glass text-white/70 text-[11px] tracking-wide px-2.5 py-1 rounded-full"
+                        >
+                          {t}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-medium leading-snug mb-4">
-                    {p.title}
-                  </h3>
-                  <p className="text-white/55 text-sm leading-relaxed mb-6 max-w-md">
-                    {p.body}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {p.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="liquid-glass text-white/70 text-[11px] tracking-wide px-2.5 py-1 rounded-full"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                </TiltCard>
               </Reveal>
             );
           })}

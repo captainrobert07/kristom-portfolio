@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Plus, Minus } from 'lucide-react';
 import Reveal from './Reveal';
 import { BigNumeral, EdgeTag, FlowGlyph, Timecode, DotRow } from './SectionDecor';
+import { SerifAccent, LightLeakOnEnter, HairlineSweepOnEnter } from './Polish';
 
 type Role = {
   when: string;
@@ -132,8 +133,10 @@ export default function Experience() {
   return (
     <section
       id="work"
-      className="relative text-white py-24 sm:py-32 px-6 sm:px-12 overflow-hidden"
+      className="relative text-white py-24 sm:py-32 px-6 sm:px-12 overflow-hidden section-tint-deep"
     >
+      <HairlineSweepOnEnter />
+      <LightLeakOnEnter variant="cool" />
       <BigNumeral num="04" position="left" />
       <FlowGlyph className="absolute top-16 right-6 w-[32vw] h-[20vw] max-w-[400px] max-h-[240px] opacity-80 pointer-events-none" />
       <EdgeTag side="right">EXPERIENCE · 04</EdgeTag>
@@ -146,9 +149,9 @@ export default function Experience() {
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-tight mb-6 max-w-3xl">
-            Six years, four industries,
-            <span className="text-white/40"> one through-line.</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-[1.05] tracking-tight mb-6 max-w-3xl">
+            Six years, four industries,{' '}
+            <SerifAccent gradient="warm">one through-line</SerifAccent>.
           </h2>
         </Reveal>
         <Reveal delay={120}>

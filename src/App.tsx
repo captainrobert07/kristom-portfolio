@@ -12,29 +12,45 @@ import ProgressRail from './components/ProgressRail';
 import Marquee from './components/Marquee';
 import BackgroundField from './components/BackgroundField';
 import Cursor from './components/Cursor';
+import {
+  ViewportFrame,
+  Spotlight,
+  CursorTrail,
+  LogoWall,
+  DividerBand,
+} from './components/Polish';
 
 const TOOLS_BAND = [
   'Power BI', 'Tableau', 'SQL', 'SAS', 'Power Automate', 'Salesforce',
   'Python', 'Generative AI', 'Azure ADLS', 'Power Apps', 'Excel', 'ETL',
 ];
 
-const PROOF_BAND = [
-  '€20M Outcomes', '90% Reporting Automated', '60+ Reports Governed',
-  '11 Internal Awards', 'Stevie Gold Medal', '4 Years · Allianz', 'UK · AU · IN',
-];
-
 export default function App() {
   return (
     <main className="relative text-white">
       <BackgroundField />
+      <Spotlight />
+      <ViewportFrame />
       <ProgressRail />
       <Cursor />
+      <CursorTrail count={6} />
+
       <Hero />
       <About />
       <Marquee items={TOOLS_BAND} speed={50} />
       <Capabilities />
+
+      {/* Silent intermission band — replaces the second marquee */}
+      <DividerBand
+        quote="Most dashboards die in a drawer. Mine don't."
+        attr="Working principle"
+      />
+
       <Impact />
-      <Marquee items={PROOF_BAND} speed={45} reverse />
+
+      {/* Logo wall — credentials over a duplicate marquee */}
+      <LogoWall />
+
       <Experience />
       <Stack />
       <Recognition />

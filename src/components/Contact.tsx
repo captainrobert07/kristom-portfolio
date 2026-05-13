@@ -1,6 +1,7 @@
 import { Mail, Phone, Linkedin, ArrowUpRight, Download } from 'lucide-react';
 import Reveal from './Reveal';
 import { BigNumeral, CornerBrackets, HairlineGrid, Timecode } from './SectionDecor';
+import { SerifAccent, MagneticButton, TiltCard, LightLeakOnEnter, HairlineSweepOnEnter } from './Polish';
 
 const channels = [
   {
@@ -27,67 +28,77 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative text-white py-24 sm:py-40 px-6 sm:px-12 overflow-hidden"
+      className="relative text-white py-32 sm:py-44 px-6 sm:px-12 overflow-hidden section-tint-gold"
     >
+      <HairlineSweepOnEnter />
+      <LightLeakOnEnter variant="warm" />
       <HairlineGrid opacity={0.04} />
       <CornerBrackets inset={32} />
       <BigNumeral num="08" position="left" className="opacity-30" />
       <Timecode value="CH 08 · END FRAME" className="absolute top-8 right-8 z-10" />
-      <div className="max-w-6xl mx-auto text-center relative">
+      <div className="max-w-7xl mx-auto text-center relative">
         <Reveal>
-          <div className="flex items-center justify-center gap-3 mb-8 text-white/50 text-xs tracking-[0.3em] uppercase">
-            <span className="w-8 h-px bg-white/30" />
-            Contact
-            <span className="w-8 h-px bg-white/30" />
+          <div className="flex items-center justify-center gap-3 mb-12 text-white/50 text-xs tracking-[0.3em] uppercase">
+            <span className="w-12 h-px bg-white/30" />
+            Contact · End Frame
+            <span className="w-12 h-px bg-white/30" />
           </div>
         </Reveal>
 
+        {/* viewport-filling type moment */}
         <Reveal delay={80}>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-medium leading-[1.05] tracking-tight mb-8 max-w-4xl mx-auto">
-            Have a problem
-            <span className="text-white/40"> nobody's solved </span>
-            with the data you already have?
+          <h2 className="font-medium leading-[0.95] tracking-tight mb-12 mx-auto"
+              style={{ fontSize: 'clamp(2.6rem, 9.5vw, 11rem)' }}>
+            <span className="block">Have a problem</span>
+            <span className="block">
+              <SerifAccent gradient="warm">nobody's solved</SerifAccent>
+            </span>
+            <span className="block text-white/65">with the data you</span>
+            <span className="block">
+              <SerifAccent gradient="cool">already have?</SerifAccent>
+            </span>
           </h2>
         </Reveal>
 
         <Reveal delay={160}>
-          <p className="text-white/55 text-base sm:text-lg leading-relaxed max-w-xl mx-auto mb-12">
-            I'm available Q2 2026 for consulting, contract, and full-time roles. Open
+          <p className="text-white/60 text-base sm:text-lg leading-relaxed max-w-xl mx-auto mb-14">
+            Available Q2 2026 for consulting, contract, and full-time roles. Open
             to BI, analytics engineering, and data-product work — wherever the
-            decisions need a translator.
+            decisions need a <SerifAccent gradient="warm">translator</SerifAccent>.
           </p>
         </Reveal>
 
         <Reveal delay={240}>
-          <div className="grid sm:grid-cols-3 gap-px bg-white/5 border border-white/10 rounded-2xl overflow-hidden text-left mb-12 backdrop-blur-sm">
+          <div className="grid sm:grid-cols-3 gap-5 text-left mb-14">
             {channels.map((c) => {
               const Icon = c.icon;
               return (
-                <a
-                  key={c.label}
-                  href={c.href}
-                  target={c.href.startsWith('http') ? '_blank' : undefined}
-                  rel="noreferrer"
-                  className="group bg-black/55 p-7 flex items-center justify-between hover:bg-black/35 transition-colors"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="liquid-glass rounded-xl p-3">
-                      <Icon size={18} strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <div className="text-white/40 text-[11px] tracking-[0.22em] uppercase mb-1">
-                        {c.label}
+                <TiltCard key={c.label} max={3}>
+                  <a
+                    href={c.href}
+                    target={c.href.startsWith('http') ? '_blank' : undefined}
+                    rel="noreferrer"
+                    className="group glass-card p-7 flex items-center justify-between transition-colors h-full"
+                  >
+                    <div className="flex items-center gap-4 relative z-10">
+                      <div className="liquid-glass rounded-xl p-3">
+                        <Icon size={18} strokeWidth={1.5} />
                       </div>
-                      <div className="text-white text-sm font-medium break-all">
-                        {c.value}
+                      <div>
+                        <div className="text-white/40 text-[10px] tracking-[0.32em] uppercase mb-1 font-mono">
+                          {c.label}
+                        </div>
+                        <div className="text-white text-sm font-medium break-all">
+                          {c.value}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <ArrowUpRight
-                    size={18}
-                    className="text-white/30 group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all"
-                  />
-                </a>
+                    <ArrowUpRight
+                      size={18}
+                      className="text-white/30 group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all relative z-10"
+                    />
+                  </a>
+                </TiltCard>
               );
             })}
           </div>
@@ -95,23 +106,29 @@ export default function Contact() {
 
         <Reveal delay={320}>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <a
+            <MagneticButton
               href="mailto:kristomrobert@gmail.com?subject=Let's%20talk"
-              className="inline-flex items-center gap-2 bg-white text-black text-sm font-medium px-6 py-3 rounded-full hover:bg-white/90 transition-colors"
+              className="inline-flex items-center gap-2 bg-white text-black text-sm font-medium px-7 py-3.5 rounded-full hover:bg-white/90 transition-colors"
             >
               Start a conversation
               <ArrowUpRight size={16} />
-            </a>
-            <a
+            </MagneticButton>
+            <MagneticButton
               href="/resume.pdf"
               download="Kristom-Robert-Resume.pdf"
-              className="inline-flex items-center gap-2 liquid-glass text-white text-sm font-medium px-6 py-3 rounded-full hover:bg-white/5 transition-colors"
+              className="inline-flex items-center gap-2 liquid-glass text-white text-sm font-medium px-7 py-3.5 rounded-full hover:bg-white/5 transition-colors"
             >
               <Download size={16} />
               Download Resume
-            </a>
+            </MagneticButton>
           </div>
         </Reveal>
+
+        <div className="mt-20 text-white/30 font-mono text-[10px] tracking-[0.45em] uppercase flex items-center justify-center gap-3">
+          <span className="w-12 h-px bg-white/20" />
+          Fade to Black
+          <span className="w-12 h-px bg-white/20" />
+        </div>
       </div>
     </section>
   );

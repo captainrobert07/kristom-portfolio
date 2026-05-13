@@ -1,6 +1,7 @@
 import { Award, GraduationCap } from 'lucide-react';
 import Reveal from './Reveal';
 import { BigNumeral, EdgeTag, QuoteGlyph, Timecode } from './SectionDecor';
+import { SerifAccent, TiltCard, LightLeakOnEnter, HairlineSweepOnEnter } from './Polish';
 
 const awards = [
   { num: '01', title: '9× Allianz Best Performer Award', year: '2022 — 2025' },
@@ -24,12 +25,14 @@ export default function Recognition() {
   return (
     <section
       id="recognition"
-      className="relative text-white py-24 sm:py-32 px-6 sm:px-12 overflow-hidden"
+      className="relative text-white py-24 sm:py-32 px-6 sm:px-12 overflow-hidden section-tint-gold"
     >
+      <HairlineSweepOnEnter />
+      <LightLeakOnEnter variant="warm" />
       <BigNumeral num="06" position="left" />
       <EdgeTag side="right">RECOGNITION · 06</EdgeTag>
       <Timecode value="CH 06 · 13:02" className="absolute top-8 right-8 z-10" />
-      <div className="max-w-6xl mx-auto relative">
+      <div className="max-w-7xl mx-auto relative">
         <Reveal>
           <div className="flex items-center gap-3 mb-6 text-white/50 text-xs tracking-[0.3em] uppercase">
             <span className="w-8 h-px bg-white/30" />
@@ -37,37 +40,41 @@ export default function Recognition() {
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight tracking-tight mb-16 max-w-3xl">
-            Awards,
-            <span className="text-white/40"> credentials, and the bet I'm making on the future.</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-medium leading-[1.05] tracking-tight mb-20 max-w-4xl">
+            <SerifAccent gradient="warm">Awards</SerifAccent>, credentials, and the bet I'm making on the{' '}
+            <SerifAccent gradient="cool">future</SerifAccent>.
           </h2>
         </Reveal>
 
-        <div className="grid md:grid-cols-12 gap-12">
-          <div className="md:col-span-7">
+        {/* Asymmetric 60/40 break: lots of negative space on the right column up top */}
+        <div className="grid md:grid-cols-10 gap-x-12 gap-y-10">
+          <div className="md:col-span-6">
             <Reveal>
               <div className="flex items-center gap-2 text-white/50 text-xs tracking-[0.22em] uppercase mb-6">
                 <Award size={14} />
-                Awards
+                Awards · 06 entries
               </div>
             </Reveal>
             <div className="border-t border-white/10">
               {awards.map((a, i) => (
                 <Reveal key={a.num} delay={i * 60} variant="left">
-                  <div className="grid grid-cols-[40px_1fr_auto] gap-4 items-center py-5 border-b border-white/10 group hover:pl-3 transition-all duration-300">
-                    <span className="text-white/30 text-xs font-mono tracking-wide">/{a.num}</span>
-                    <h4 className="text-base sm:text-lg font-medium leading-snug group-hover:text-white text-white/90">
+                  <div className="grid grid-cols-[44px_1fr_auto] gap-4 items-center py-6 border-b border-white/10 group hover:pl-3 hover:bg-white/[0.02] transition-all duration-300">
+                    <span className="text-white/30 text-[11px] font-mono tracking-[0.2em]">/{a.num}</span>
+                    <h4 className="text-base sm:text-lg font-medium leading-snug group-hover:text-white text-white/85">
                       {a.title}
                     </h4>
-                    <span className="text-white/40 text-xs tracking-wider">{a.year}</span>
+                    <span className="text-white/40 text-[11px] tracking-[0.16em] font-mono uppercase whitespace-nowrap">
+                      {a.year}
+                    </span>
                   </div>
                 </Reveal>
               ))}
             </div>
           </div>
 
-          <div className="md:col-span-5 md:pl-8 md:border-l md:border-white/10 space-y-10 relative">
-            <QuoteGlyph className="absolute -top-10 right-2 w-24 h-24 opacity-50" />
+          {/* Side: starts pushed down, generous whitespace = luxury */}
+          <div className="md:col-span-4 md:pt-24 space-y-10 relative">
+            <QuoteGlyph className="absolute -top-2 right-0 w-24 h-24 opacity-50" />
             <Reveal delay={120} variant="right">
               <div>
                 <div className="flex items-center gap-2 text-white/50 text-xs tracking-[0.22em] uppercase mb-6">
@@ -75,21 +82,23 @@ export default function Recognition() {
                   Education
                 </div>
 
-                <div className="liquid-glass rounded-2xl p-6 mb-4">
-                  <div className="text-white/40 text-[11px] tracking-[0.22em] uppercase mb-2">
-                    In progress
+                <TiltCard className="mb-4" max={3}>
+                  <div className="glass-card p-6 relative">
+                    <div className="text-white/40 text-[10px] tracking-[0.32em] uppercase mb-2 font-mono">
+                      In progress
+                    </div>
+                    <div className="font-serif-display text-xl italic leading-snug mb-1">
+                      <SerifAccent gradient="warm">Executive PG</SerifAccent>, Data Science &amp; Generative AI
+                    </div>
+                    <div className="text-white/60 text-sm">IIT Roorkee</div>
                   </div>
-                  <div className="text-lg font-medium leading-snug mb-1">
-                    Executive PG, Data Science &amp; Generative AI
-                  </div>
-                  <div className="text-white/60 text-sm">IIT Roorkee</div>
-                </div>
+                </TiltCard>
 
-                <div className="rounded-2xl p-6 border border-white/10">
-                  <div className="text-white/40 text-[11px] tracking-[0.22em] uppercase mb-2">
+                <div className="rounded-2xl p-6 border border-white/10 backdrop-blur-sm bg-black/30">
+                  <div className="text-white/40 text-[10px] tracking-[0.32em] uppercase mb-2 font-mono">
                     Completed
                   </div>
-                  <div className="text-lg font-medium leading-snug mb-1">
+                  <div className="font-serif-display text-xl italic leading-snug mb-1 text-white/85">
                     B.A. (General)
                   </div>
                   <div className="text-white/60 text-sm">
@@ -108,7 +117,7 @@ export default function Recognition() {
                   {certs.map((c) => (
                     <span
                       key={c}
-                      className="liquid-glass text-white/70 text-[11px] tracking-wide px-2.5 py-1.5 rounded-full"
+                      className="liquid-glass text-white/75 text-[11px] tracking-wide px-2.5 py-1.5 rounded-full"
                     >
                       {c}
                     </span>
