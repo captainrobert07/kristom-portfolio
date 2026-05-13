@@ -369,12 +369,12 @@ export function PortraitFrame({
           className="absolute inset-0 flex items-center justify-center"
           style={{
             background:
-              'radial-gradient(ellipse at 30% 30%, rgba(255,220,170,0.18), transparent 60%), linear-gradient(135deg, rgba(20,18,14,0.9), rgba(40,30,20,0.7))',
+              'radial-gradient(ellipse at 30% 30%, rgba(150,190,255,0.20), transparent 60%), linear-gradient(135deg, rgba(10,16,28,0.92), rgba(20,32,52,0.75))',
           }}
         >
           <span
             className="font-serif-display text-[12rem] leading-none italic font-light"
-            style={{ color: 'rgba(255, 220, 170, 0.08)', letterSpacing: '-0.06em' }}
+            style={{ color: 'rgba(150, 190, 255, 0.10)', letterSpacing: '-0.06em' }}
           >
             {initials}
           </span>
@@ -419,7 +419,7 @@ export function LogoWall() {
             key={it.name}
             className="logo-cell group"
             style={{
-              borderRight: i < items.length - 1 ? '1px solid rgba(255,220,180,0.08)' : 'none',
+              borderRight: i < items.length - 1 ? '1px solid rgba(180,210,255,0.10)' : 'none',
             }}
           >
             <div className="text-center px-3 transition-transform duration-500 group-hover:-translate-y-1">
@@ -447,7 +447,7 @@ export function DividerBand({ quote, attr }: { quote: string; attr?: string }) {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 70% 50% at 50% 50%, rgba(255,200,130,0.10), transparent 70%)',
+            'radial-gradient(ellipse 70% 50% at 50% 50%, rgba(120,170,255,0.12), transparent 70%)',
         }}
       />
       {/* slow rotating glyph */}
