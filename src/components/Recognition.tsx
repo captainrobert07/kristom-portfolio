@@ -58,12 +58,12 @@ export default function Recognition() {
             <div className="border-t border-white/10">
               {awards.map((a, i) => (
                 <Reveal key={a.num} delay={i * 60} variant="left">
-                  <div className="grid grid-cols-[44px_1fr_auto] gap-4 items-center py-6 border-b border-white/10 group hover:pl-3 hover:bg-white/[0.02] transition-all duration-300">
+                  <div className="grid grid-cols-[32px_1fr] sm:grid-cols-[44px_1fr_auto] gap-x-3 sm:gap-x-4 gap-y-1 items-baseline sm:items-center py-5 sm:py-6 border-b border-white/10 group hover:pl-3 hover:bg-white/[0.02] transition-all duration-300">
                     <span className="text-white/30 text-[11px] font-mono tracking-[0.2em]">/{a.num}</span>
                     <h3 className="text-base sm:text-lg font-medium leading-snug group-hover:text-white text-white/85">
                       {a.title}
                     </h3>
-                    <span className="text-white/40 text-[11px] tracking-[0.16em] font-mono uppercase whitespace-nowrap">
+                    <span className="col-start-2 sm:col-start-auto text-white/40 text-[11px] tracking-[0.16em] font-mono uppercase whitespace-nowrap">
                       {a.year}
                     </span>
                   </div>

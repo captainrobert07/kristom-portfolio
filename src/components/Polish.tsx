@@ -361,7 +361,7 @@ export function PortraitFrame({
   initials?: string;
 }) {
   return (
-    <figure className="relative aspect-[4/5] w-full max-w-[360px] rounded-2xl overflow-hidden glass-card group">
+    <figure className="relative aspect-[4/5] w-full max-w-[260px] sm:max-w-[360px] mx-auto rounded-2xl overflow-hidden glass-card group">
       {src ? (
         <img
           src={src}
@@ -459,7 +459,7 @@ export function DividerBand({ quote, attr }: { quote: string; attr?: string }) {
       <svg
         aria-hidden
         viewBox="0 0 200 200"
-        className="absolute right-[-4vw] top-1/2 -translate-y-1/2 w-[40vw] h-[40vw] max-w-[420px] max-h-[420px] opacity-30 pointer-events-none text-white/40"
+        className="divider-glyph absolute right-[-4vw] top-1/2 -translate-y-1/2 w-[40vw] h-[40vw] max-w-[420px] max-h-[420px] opacity-30 pointer-events-none text-white/40"
         fill="none"
         stroke="currentColor"
         strokeWidth="0.6"

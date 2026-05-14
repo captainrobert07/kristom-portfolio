@@ -417,6 +417,49 @@ html[data-theme='light'] .glass-card {
 }
 html[data-theme='light'] .drop-cap::first-letter { color: #1c4582; text-shadow: none; }
 
+/* gradient accents — light mode needs deeper blues to read against cream paper */
+html[data-theme='light'] .gradient-warm {
+  background: linear-gradient(95deg, #1e4ea8 0%, #2c6fd6 45%, #1c4582 100%) !important;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+html[data-theme='light'] .gradient-cool {
+  background: linear-gradient(95deg, #1c4582 0%, #2a5aa8 45%, #1e4ea8 100%) !important;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* light mode card surfaces — cards used dark veils in dark mode; flip them to ink-on-paper */
+html[data-theme='light'] .bg-black\/55 { background: rgba(255,255,255,0.55) !important; }
+html[data-theme='light'] .bg-black\/40 { background: rgba(255,255,255,0.45) !important; }
+html[data-theme='light'] .bg-black\/35 { background: rgba(255,255,255,0.35) !important; }
+html[data-theme='light'] .bg-black\/30 { background: rgba(255,255,255,0.30) !important; }
+html[data-theme='light'] .hover\:bg-black\/35:hover { background: rgba(255,255,255,0.45) !important; }
+
+/* serif italic accents that aren't gradient — make them ink-blue too */
+html[data-theme='light'] .serif-italic { color: #1c4582; }
+html[data-theme='light'] .serif-italic.gradient-warm,
+html[data-theme='light'] .serif-italic.gradient-cool { color: transparent; }
+
+/* viewport corners + dust + cursor trail dimmed in light */
+html[data-theme='light'] .cursor-trail-dot { background: rgba(28, 69, 130, 0.5); }
+html[data-theme='light'] .hairline-sweep { background: linear-gradient(90deg, transparent, rgba(28, 69, 130, 0.5), transparent); }
+html[data-theme='light'] .light-leak::after,
+html[data-theme='light'] .light-leak-cool::after {
+  background: linear-gradient(100deg, transparent 0%, rgba(28,69,130,0.10) 35%, rgba(80,140,220,0.20) 50%, rgba(28,69,130,0.10) 65%, transparent 100%) !important;
+}
+
+/* big numerals — light mode needs darker ghost color */
+html[data-theme='light'] .numeral-shift:hover { color: rgba(28, 69, 130, 0.30) !important; }
+
+/* ::selection */
+html[data-theme='light'] ::selection { background: rgba(80, 140, 220, 0.85); color: #050b18; }
+
+/* big numerals — light mode needs ink color, not faint white */
+html[data-theme='light'] .big-numeral { color: rgba(15, 22, 34, 0.06) !important; }
+
+/* edge tags + timecode + dot rows — already covered via text-white/40 etc. flips above */
+
 /* opt-out from theme flips */
 html[data-theme='light'] [data-force-dark] .text-white,
 html[data-theme='light'] [data-force-dark] .text-white\/90,
@@ -461,16 +504,22 @@ html[data-theme='light'] [data-force-dark] .liquid-glass::before {
 html[data-theme='light'] [data-force-dark] .hover\:bg-white\/5:hover { background: rgba(255,255,255,0.05) !important; }
 html[data-theme='light'] [data-force-dark] .hover\:bg-white\/90:hover { background: rgba(255,255,255,0.92) !important; }
 
-/* light theme — sweeping color flips */
-html[data-theme='light'] .text-white { color: #0f1622 !important; }
-html[data-theme='light'] .text-white\/90 { color: rgba(15,22,34,0.92) !important; }
-html[data-theme='light'] .text-white\/80 { color: rgba(15,22,34,0.85) !important; }
-html[data-theme='light'] .text-white\/70 { color: rgba(15,22,34,0.72) !important; }
-html[data-theme='light'] .text-white\/60 { color: rgba(15,22,34,0.62) !important; }
-html[data-theme='light'] .text-white\/55 { color: rgba(15,22,34,0.58) !important; }
-html[data-theme='light'] .text-white\/50 { color: rgba(15,22,34,0.55) !important; }
-html[data-theme='light'] .text-white\/40 { color: rgba(15,22,34,0.42) !important; }
-html[data-theme='light'] .text-white\/30 { color: rgba(15,22,34,0.32) !important; }
+/* light theme — sweeping color flips
+   light bg is much less forgiving than dark — bump every shade up so all copy
+   stays clearly readable instead of disappearing into the cream paper */
+html[data-theme='light'] .text-white       { color: #0f1622 !important; }
+html[data-theme='light'] .text-white\/90   { color: rgba(15,22,34,0.95) !important; }
+html[data-theme='light'] .text-white\/85   { color: rgba(15,22,34,0.92) !important; }
+html[data-theme='light'] .text-white\/80   { color: rgba(15,22,34,0.92) !important; }
+html[data-theme='light'] .text-white\/70   { color: rgba(15,22,34,0.85) !important; }
+html[data-theme='light'] .text-white\/65   { color: rgba(15,22,34,0.82) !important; }
+html[data-theme='light'] .text-white\/60   { color: rgba(15,22,34,0.78) !important; }
+html[data-theme='light'] .text-white\/55   { color: rgba(15,22,34,0.74) !important; }
+html[data-theme='light'] .text-white\/50   { color: rgba(15,22,34,0.70) !important; }
+html[data-theme='light'] .text-white\/45   { color: rgba(15,22,34,0.62) !important; }
+html[data-theme='light'] .text-white\/40   { color: rgba(15,22,34,0.58) !important; }
+html[data-theme='light'] .text-white\/35   { color: rgba(15,22,34,0.50) !important; }
+html[data-theme='light'] .text-white\/30   { color: rgba(15,22,34,0.46) !important; }
 html[data-theme='light'] .bg-white { background: #0f1622 !important; }
 html[data-theme='light'] .bg-white\/15 { background: rgba(15,22,34,0.10) !important; }
 html[data-theme='light'] .bg-white\/10 { background: rgba(15,22,34,0.08) !important; }
@@ -503,6 +552,38 @@ body.cursor-cinematic,
 body.cursor-cinematic * { cursor: none !important; }
 body.cursor-cinematic input,
 body.cursor-cinematic textarea { cursor: text !important; }
+
+/* ─────────────────────────────────────────────
+   Mobile optimization — kill heavy chrome, scale decor,
+   tighten spacing on narrow viewports
+   ───────────────────────────────────────────── */
+@media (max-width: 767px) {
+  /* hide page chrome that competes with content on phones */
+  .viewport-corners,
+  .cursor-trail-dot {
+    display: none !important;
+  }
+
+  /* big numerals were 18vw — too dominant on phone, scale down */
+  .big-numeral {
+    font-size: 26vw !important;
+    top: -2vw !important;
+    opacity: 0.7;
+  }
+
+  /* divider glyph too big */
+  .divider-glyph {
+    width: 70vw !important;
+    height: 70vw !important;
+    right: -20vw !important;
+  }
+
+  /* hairline grid less dense */
+  .hairline-mobile-soft { opacity: 0.5; }
+
+  /* tighten text/sizes that were 4xl+ on small screens */
+  h1, h2 { letter-spacing: -0.02em; }
+}
 
 /* respect reduced motion */
 @media (prefers-reduced-motion: reduce) {

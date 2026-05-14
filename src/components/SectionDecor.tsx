@@ -22,7 +22,7 @@ export function BigNumeral({
   return (
     <div
       aria-hidden
-      className={`absolute top-8 ${side} text-[18vw] sm:text-[14vw] leading-none font-medium tracking-tighter text-white/[0.04] select-none pointer-events-none ${className}`}
+      className={`big-numeral absolute top-8 ${side} text-[18vw] sm:text-[14vw] leading-none font-medium tracking-tighter text-white/[0.04] select-none pointer-events-none ${className}`}
     >
       {num}
     </div>

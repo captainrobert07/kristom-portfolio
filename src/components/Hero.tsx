@@ -146,18 +146,17 @@ export default function Hero() {
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           Available · Remote / Hybrid
         </div>
-        <h1 className="text-white text-4xl sm:text-5xl lg:text-7xl font-medium leading-[1.02] tracking-tight mb-4 [perspective:600px]">
+        <h1 className="text-white text-[2.6rem] sm:text-5xl lg:text-7xl font-medium leading-[1.02] tracking-tight mb-4 [perspective:600px]">
           <span className="block">
             <StaggerWord per={28}>Data,</StaggerWord>
           </span>
           <span className="block">
-            <SerifAccent gradient="warm" className="text-[1.06em]">
-              <StaggerWord base={250} per={28}>Translated</StaggerWord>
-            </SerifAccent>{' '}
-            <StaggerWord base={650} per={28}>Into</StaggerWord>
+            <StaggerWord base={250} per={28}>Translated Into</StaggerWord>
           </span>
           <span className="block">
-            <StaggerWord base={900} per={28}>Decisions.</StaggerWord>
+            <SerifAccent gradient="warm" className="text-[1.08em]">
+              <StaggerWord base={700} per={28}>Decisions.</StaggerWord>
+            </SerifAccent>
           </span>
         </h1>
         <p className="text-white/60 text-sm leading-relaxed mb-7 max-w-md">
