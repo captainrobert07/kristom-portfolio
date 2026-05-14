@@ -27,13 +27,16 @@ export default function Hero() {
 
   return (
     <section id="home" data-force-dark className="relative w-full h-screen overflow-hidden">
-      {/* background video */}
+      {/* background video — preload metadata only; poster mirrors the OG so first paint is never black */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay
         muted
         loop
         playsInline
+        preload="metadata"
+        poster="/og.svg"
+        aria-hidden="true"
         src={BG_VIDEO}
       />
 

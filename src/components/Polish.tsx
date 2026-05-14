@@ -79,6 +79,11 @@ export function CursorTrail({ count = 8 }: { count?: number }) {
 
     let raf = 0;
     const loop = () => {
+      // skip work when the tab is hidden — saves CPU/battery
+      if (document.hidden) {
+        raf = requestAnimationFrame(loop);
+        return;
+      }
       let prevX = target.current.x;
       let prevY = target.current.y;
       for (let i = 0; i < positions.current.length; i++) {

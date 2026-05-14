@@ -27,6 +27,14 @@ const TOOLS_BAND = [
 export default function App() {
   return (
     <main className="relative text-white">
+      {/* skip-to-content link — keyboard and screen-reader users */}
+      <a
+        href="#about"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[300] focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:rounded-full focus:text-sm focus:font-medium"
+      >
+        Skip to content
+      </a>
+
       <BackgroundField />
       <ViewportFrame />
       <ProgressRail />

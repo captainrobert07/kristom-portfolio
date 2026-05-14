@@ -91,7 +91,7 @@ export default function Writing() {
             <a
               href="https://www.linkedin.com/in/kristom-robert"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="text-white hover:underline"
             >
               LinkedIn

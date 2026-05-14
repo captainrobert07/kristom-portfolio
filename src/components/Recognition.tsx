@@ -60,9 +60,9 @@ export default function Recognition() {
                 <Reveal key={a.num} delay={i * 60} variant="left">
                   <div className="grid grid-cols-[44px_1fr_auto] gap-4 items-center py-6 border-b border-white/10 group hover:pl-3 hover:bg-white/[0.02] transition-all duration-300">
                     <span className="text-white/30 text-[11px] font-mono tracking-[0.2em]">/{a.num}</span>
-                    <h4 className="text-base sm:text-lg font-medium leading-snug group-hover:text-white text-white/85">
+                    <h3 className="text-base sm:text-lg font-medium leading-snug group-hover:text-white text-white/85">
                       {a.title}
-                    </h4>
+                    </h3>
                     <span className="text-white/40 text-[11px] tracking-[0.16em] font-mono uppercase whitespace-nowrap">
                       {a.year}
                     </span>

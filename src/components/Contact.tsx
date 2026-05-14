@@ -77,7 +77,7 @@ export default function Contact() {
                   <a
                     href={c.href}
                     target={c.href.startsWith('http') ? '_blank' : undefined}
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="group glass-card p-7 flex items-center justify-between transition-colors h-full"
                   >
                     <div className="flex items-center gap-4 relative z-10">

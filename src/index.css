@@ -76,11 +76,10 @@ body { min-height: 100vh; }
    ───────────────────────────────────────────── */
 .glass-card {
   position: relative;
+  /* Firefox + browsers without backdrop-filter — bump the solid bg so cards stay readable */
   background:
     linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 50%, rgba(0,0,0,0.05) 100%),
-    rgba(10, 12, 18, 0.55);
-  backdrop-filter: blur(8px) saturate(120%);
-  -webkit-backdrop-filter: blur(8px) saturate(120%);
+    rgba(10, 12, 18, 0.85);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.18),
     inset 0 -1px 0 rgba(0, 0, 0, 0.3),
@@ -89,6 +88,15 @@ body { min-height: 100vh; }
   border-radius: 16px;
   overflow: hidden;
   isolation: isolate;
+}
+@supports ((backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px))) {
+  .glass-card {
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 50%, rgba(0,0,0,0.05) 100%),
+      rgba(10, 12, 18, 0.55);
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+  }
 }
 .glass-card::after {
   content: '';
@@ -513,14 +521,20 @@ body.cursor-cinematic textarea { cursor: text !important; }
    Existing animations preserved
    ───────────────────────────────────────────── */
 .liquid-glass {
-  background: rgba(255, 255, 255, 0.01);
+  /* Fallback for browsers without backdrop-filter — keep slightly more opaque so text stays readable */
+  background: rgba(255, 255, 255, 0.06);
   background-blend-mode: luminosity;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
   border: none;
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
+}
+@supports ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))) {
+  .liquid-glass {
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
 }
 .liquid-glass::before {
   content: '';
